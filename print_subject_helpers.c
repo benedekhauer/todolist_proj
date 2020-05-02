@@ -14,7 +14,7 @@ void print_subject(char subject[]) {
 		return;
 	}
 
-	print_subject_name(subject, TRUE);	
+	print_subject_name(subject, FALSE);	
 	printf("\n");
 	FILE* f_subj = fopen(subject, "r");
 	int todo_id;
@@ -41,4 +41,5 @@ void print_subject(char subject[]) {
     for(int i = 0; i < SUBJECT_TITLE_SIZE; i++) {
         printf("#");
     }
+	printf("\n");
 }

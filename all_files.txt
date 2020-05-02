@@ -1,0 +1,9 @@
+ArchSoc
+ToC
+ParCon
+ProbaStat
+ProgOS
+SHS
+VisComp
+Other
+ProjectOS
