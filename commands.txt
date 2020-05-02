@@ -1,0 +1,12 @@
+|####### COMMANDS #########
+|#  Reset :          init #
+|#  Add subject :    adds #
+|#  Add todo :       addt #
+|#  Delete subject:  dels #
+|#  Delete todo:     delt #
+|#  Random todo:     rndm #
+|#  Clear subject:   clrs #
+|#  Print subject:   prnt #
+|#  Show commands:   help #
+|#  Exit:            exit #
+|##########################
