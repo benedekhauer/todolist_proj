@@ -11,6 +11,7 @@
 #include "remove_todo.h"
 #include "random_todo.h"
 #include "update.h"
+#include "display_subjects.h"
 
 int main(void) {
 	char username[USERNAME_SIZE];
@@ -38,6 +39,10 @@ int main(void) {
 				proc_init();
 				print_line();
 				change = 1;
+				break;
+			case disp:
+				proc_disp();
+				print_line();
 				break;
 			case adds:
 				proc_adds();

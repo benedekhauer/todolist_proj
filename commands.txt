@@ -1,5 +1,6 @@
 |####### COMMANDS #########
 |#  Reset :          init #
+|#  Show subjects:   disp #
 |#  Add subject :    adds #
 |#  Add todo :       addt #
 |#  Delete subject:  dels #

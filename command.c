@@ -4,6 +4,7 @@
 #include <string.h>
 
 #define NAME_INIT "init"
+#define NAME_DISP "disp"
 #define NAME_ADDS "adds"
 #define NAME_ADDT "addt"
 #define NAME_DELS "dels"
@@ -15,7 +16,7 @@
 #define NAME_EXIT "exit"
 
 int isValid(command c) {
-	if(c == init || c == adds || c == addt || c == dels || c == delt || 
+	if(c == init || c == disp || c == adds || c == addt || c == dels || c == delt || 
 	   c == rndm || c == clrs || c == prnt || c == help || c == exit) {
 		return TRUE;
 	}
@@ -41,6 +42,7 @@ int print_commands(void) {
 void print_command(command cmd) {
 	switch(cmd) {
 		case init: printf("init\n");return;
+		case disp: printf("disp\n");return;
 		case adds: printf("adds\n");return;
 		case addt: printf("addt\n");return;
 		case dels: printf("dels\n");return;
@@ -61,6 +63,7 @@ command parse_command(char read[]) {
 	}
 	if(read[CMD_SIZE] != '\n') {return none;}
 	if(strcmp(str, NAME_INIT) == 0) {return init;}
+	else if(strcmp(str, NAME_DISP) == 0) {return disp;}
 	else if(strcmp(str, NAME_ADDS) == 0) {return adds;}
 	else if(strcmp(str, NAME_ADDT) == 0) {return addt;}
 	else if(strcmp(str, NAME_DELS) == 0) {return dels;}

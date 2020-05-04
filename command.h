@@ -2,17 +2,18 @@
 #define CMD_SIZE 4
 
 typedef enum {
-	init = 0,
-	adds = 1,
-	addt = 2,
-	dels = 3,
-	delt = 4,
-	rndm = 5,
-	clrs = 6,
-	prnt = 7,
-	help = 8,
-	exit = 9,
-	none = 10
+	init,
+	disp,
+	adds,
+	addt,
+	dels,
+	delt,
+	rndm,
+	clrs,
+	prnt,
+	help,
+	exit,
+	none
 } command;
 
 // checks if command exists
