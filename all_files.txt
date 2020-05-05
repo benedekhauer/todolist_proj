@@ -1,9 +1,1 @@
-archsoc
-toc
-progos
-projectos
-parcon
-probastat
-viscomp
-shs
-others
+
