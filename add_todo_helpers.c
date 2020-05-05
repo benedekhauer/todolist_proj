@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "util.h"
 #include <string.h>
+#include "print_subject_helpers.h"
 
 void add_todo(const char subject[], const char username[]) {
 	FILE* f_nextid = fopen(FILE_NEXTID, "r");
@@ -12,7 +13,9 @@ void add_todo(const char subject[], const char username[]) {
 	f_nextid = fopen(FILE_NEXTID, "w");
 	fprintf(f_nextid, "%d", nextId);
 	fclose(f_nextid);
-	
+
+
+	print_subject(subject);		
 
 	FILE* f_subject = fopen(subject, "a");
 	

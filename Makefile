@@ -10,7 +10,7 @@ add_subject.o: add_subject.c util.h add_subject.h add_subject_helpers.h \
 add_subject_helpers.o: add_subject_helpers.c util.h add_subject_helpers.h
 
 add_todo.o: add_todo.c add_todo.h util.h add_todo_helpers.h \
- remove_subject_helpers.h
+ print_subject_helpers.h
 
 add_todo_helpers.o: add_todo_helpers.c add_todo_helpers.h util.h
 
