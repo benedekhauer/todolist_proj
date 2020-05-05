@@ -1,6 +1,6 @@
--> Command for print subject.
 -> When adding a todo, possibility to add another one to the same subject.
 -> When adding a new subject, possibility to add a todo to it.
 -> Possibility of moving a todo to the top
 -> Adding importance to a todo (and file important.txt)
 -> When displaying the todo, show the number of todos inside it.
+-> Improve nextId generating

@@ -4,3 +4,4 @@ progos
 parcon
 probastat
 viscomp
+shs
