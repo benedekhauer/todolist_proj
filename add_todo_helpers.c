@@ -23,7 +23,12 @@ void add_todo(const char subject[], const char username[]) {
 		fgets(todo, MAX_STR_SIZE, stdin);	
 	} while(strlen(todo) > MAX_TODO_SIZE);
 
-	if(strcmp(todo, EXIT_CODE) == 0) {
+	char noNewLine[MAX_STR_SIZE];
+	strncpy(noNewLine, todo, MAX_TODO_SIZE);
+
+	correct(noNewLine);
+
+	if(strcmp(noNewLine, EXIT_CODE) == 0) {
 		printf("| Bot> No changes. Aborted.\n");
 		return;
 	}

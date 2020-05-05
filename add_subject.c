@@ -12,7 +12,7 @@ void proc_adds(void) {
 	fscanf(file_usr, "%s", username);
 	fclose(file_usr);
 	do {
-		printf("| Bot> Enter subject (max %d chars read, only letters and numbers).\n", MAX_FILENAME_SIZE);
+		printf("| Bot> Enter subject (max %d chars, only letters and numbers).\n", MAX_FILENAME_SIZE-1);
 		printf("| %s> (EXIT to abort): ", username);
 		fgets(filename, MAX_STR_SIZE, stdin);
 	} while(isAccepted(filename) == FALSE || strlen(filename) > MAX_FILENAME_SIZE);

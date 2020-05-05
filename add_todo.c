@@ -23,16 +23,11 @@ void proc_addt(void) {
 	printf("| Bot> Which subject do you want to add the todo to?\n"); 
 	printf("| %s> (EXIT to abort): ", username);
 	fgets(subject, MAX_STR_SIZE, stdin);
+	
+	strncpy(unchanged, subject, MAX_FILENAME_SIZE);	
+
 	correct(subject);
-	
-	strncpy(unchanged, subject, MAX_FILENAME_SIZE);
-	
-	for(int i = 0; i < MAX_FILENAME_SIZE + 1; i++) {
-        if(subject[i] == '\n') {
-            subject[i] = '\0';
-            break;
-        }
-    }
+
 
 
 	if(strcmp(subject, EXIT_CODE) == 0) {
@@ -41,7 +36,7 @@ void proc_addt(void) {
 	}
 	
 	
-	if(file_exists(unchanged) == TRUE) {
+	if(file_exists(subject) == TRUE) {
 		add_todo(subject, username);
 		return;
 	}
