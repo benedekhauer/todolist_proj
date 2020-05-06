@@ -5,7 +5,7 @@
 #include "add_todo_helpers.h"
 #include "remove_subject_helpers.h"
 
-void proc_addt(void) {
+int proc_addt(void) {
 	char username[USERNAME_SIZE];
 	FILE* file_usr = fopen(FILE_USERNAME, "r");
 	fscanf(file_usr, "%s", username);
@@ -16,7 +16,7 @@ void proc_addt(void) {
 	
 	if(isFileEmpty(FILE_LIST)) {
 		printf("| Bot> You have no subject to add a todo to.\n");
-		return;
+		return FALSE;
 	}
 	
 	print_subjects();
@@ -32,17 +32,16 @@ void proc_addt(void) {
 
 	if(strcmp(subject, EXIT_CODE) == 0) {
 		printf("| Bot> No changes. Aborted.\n");
-		return;
+		return FALSE;
 	}
 	
 	
 	if(file_exists(subject) == TRUE) {
-		add_todo(subject, username);
-		return;
+		return add_todo(subject, username);
 	}
 	else {
 		printf("| Bot> The subject you typed in does not exist.\n");
 		printf("| Bot> Failed to add todo.\n");
-		return;
+		return FALSE;
 	}
 }

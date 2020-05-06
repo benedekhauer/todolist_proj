@@ -5,7 +5,7 @@
 #include "remove_subject_helpers.h"
 #include "clear_subject_helpers.h"
 
-void proc_clrs(void) {
+int proc_clrs(void) {
 
 	char username[USERNAME_SIZE];
     FILE* file_usr = fopen(FILE_USERNAME, "r");
@@ -14,12 +14,12 @@ void proc_clrs(void) {
 	
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> There is no subject to clear.\n");
-		return;
+		return FALSE;
 	}
 
 	if(allEmpty() == TRUE) {
 		printf("| Bot> All your subjects are already empty.\n");
-		return;
+		return FALSE;
 	}
     char unchanged[MAX_STR_SIZE];
     char subject[MAX_STR_SIZE];
@@ -39,13 +39,13 @@ void proc_clrs(void) {
 
 	if(strcmp(subject, ALL_CODE) == 0) {
 		clear_all();
-		return;
+		return TRUE;
 	}
 
 
     if(strcmp(subject, EXIT_CODE) == 0) {
         printf("| Bot> No changes. Aborted.\n");
-        return;
+        return FALSE;
     }
 
 
@@ -54,12 +54,12 @@ void proc_clrs(void) {
 		fprintf(toClear, "%s", EMPTY_STRING);
 		fclose(toClear);
 		printf("| Bot> Subject cleared successfully.\n");
-		return;
+		return TRUE;
     }
     else {
         printf("| Bot> The subject you typed in does not exist.\n");
         printf("| Bot> Failed to clear.\n");
-        return;
+        return FALSE;
     }
 
 }

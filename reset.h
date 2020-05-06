@@ -1,1 +1,1 @@
-void proc_init(void);
+int proc_init(void);

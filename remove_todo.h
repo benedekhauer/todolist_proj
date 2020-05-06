@@ -1,1 +1,1 @@
-void proc_delt(void);
+int proc_delt(void);

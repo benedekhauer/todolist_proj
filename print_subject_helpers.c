@@ -3,7 +3,7 @@
 #include "print_subject_helpers.h"
 #include <string.h>
 
-void print_subject(char subject[]) {
+void print_subject(const char subject[]) {
 	if(file_exists(subject) == FALSE) {
 		printf("| Bot> This subject does not exist.\n");
 		return;

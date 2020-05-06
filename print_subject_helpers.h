@@ -1,1 +1,1 @@
-void print_subject(char[]);
+void print_subject(const char[]);

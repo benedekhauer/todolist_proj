@@ -1,1 +1,1 @@
-void add_todo(const char[], const char[]);
+int add_todo(const char[], const char[]);

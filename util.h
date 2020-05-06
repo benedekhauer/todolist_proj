@@ -15,7 +15,9 @@
 #define FILE_CMD "commands.txt"
 #define FILE_USERNAME "username.txt"
 #define FILE_SWAP "swap.txt"
+#define FILE_INFO "info.txt"
 #define MAKEFILE "Makefile"
+
 
 #define MAX_STR_SIZE 10000
 #define MAX_FILENAME_SIZE 21
@@ -29,9 +31,9 @@ void print_line(void);
 
 void print_subjects(void);
 
-int isFileEmpty(char[]);
+int isFileEmpty(const char[]);
 
-char parse_answer(char[]);
+char parse_answer(const char[]);
 
 void print_nonempty_subjects(void);
 
@@ -39,9 +41,9 @@ int allEmpty(void);
 
 void correct(char[]);
 
-int file_exists(char[]);
+int file_exists(const char[]);
 
-void print_subject_name(char[], int);
+void print_subject_name(const char[], int);
 
 int line_count(char[]);
 

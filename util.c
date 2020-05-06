@@ -22,7 +22,7 @@ void print_subjects(void) {
 	fclose(file);
 }
 
-int isFileEmpty(char filename[]) {
+int isFileEmpty(const char filename[]) {
 	FILE* file = fopen(filename, "r");
 	char first;
 	if((fscanf(file, "%c", &first)) == EOF) { 
@@ -34,7 +34,7 @@ int isFileEmpty(char filename[]) {
 }
 
 
-char parse_answer(char read[]) {
+char parse_answer(const char read[]) {
     char str[1];
     str[0] = read[0];
     if(read[1] != '\n') {return 'X';}
@@ -85,7 +85,7 @@ void correct(char filename[]) {
     }
 }
 
-int file_exists(char filename[]) {
+int file_exists(const char filename[]) {
     FILE* all_files = fopen(FILE_LIST, "r");
     char line[MAX_STR_SIZE];
     while(!feof(all_files)) {
@@ -100,7 +100,7 @@ int file_exists(char filename[]) {
     return FALSE;
 }
 
-void print_subject_name(char subject[], int withEndline) {
+void print_subject_name(const char subject[], int withEndline) {
 	char copied[MAX_STR_SIZE];
 	strncpy(copied, subject, MAX_STR_SIZE);
 	correct(copied);

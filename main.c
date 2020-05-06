@@ -12,8 +12,11 @@
 #include "random_todo.h"
 #include "update.h"
 #include "display_subjects.h"
+#include "change_username.h"
+#include "information.h"
 
 int main(void) {
+	int username_update = FALSE;
 	char username[USERNAME_SIZE];
 	FILE* file_usr = fopen(FILE_USERNAME, "r");
 	fscanf(file_usr, "%s", username);
@@ -31,14 +34,13 @@ int main(void) {
         cmd = parse_command(s_command);
     }
 	
-	int change = 0;
+	int change = FALSE;
 	print_line();
 	while(cmd != exit) {
 		switch(cmd) {
 			case init:
-				proc_init();
+				change = proc_init();
 				print_line();
-				change = 1;
 				break;
 			case disp:
 				proc_disp();
@@ -49,31 +51,35 @@ int main(void) {
 				print_line();
 				break;
 			case addt:
-				proc_addt();
+				change = proc_addt();
 				print_line();
-				change = 1;
 				break;
 			case dels:
-				proc_dels();
+				change = proc_dels();
 				print_line();
-				change = 1;
 				break;
 			case delt:
-				proc_delt();
+				change = proc_delt();
 				print_line();
-				change = 1;
 				break;
 			case rndm:
 				proc_rndm();
 				print_line();
 				break;
 			case clrs:
-				proc_clrs();
+				change = proc_clrs();
 				print_line();
-				change = 1;
 				break;
 			case prnt:
 				proc_prnt();
+				print_line();
+				break;
+			case usrn:
+				username_update = proc_usrn();
+				print_line();
+				break;
+			case info:
+				proc_info();
 				print_line();
 				break;
 			case help:
@@ -86,9 +92,17 @@ int main(void) {
 			default:
 				break;
 		}
-		if(change == 1) {
+		if(change == TRUE) {
 			update();
 		}
+
+		if(username_update == TRUE) {
+			FILE* file_usr = fopen(FILE_USERNAME, "r");
+    		fscanf(file_usr, "%s", username);
+    		fclose(file_usr);
+		}
+	
+
 		do {
             printf("| %s> (cmd): ", username);
             char s_command[MAX_STR_SIZE];

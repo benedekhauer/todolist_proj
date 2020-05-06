@@ -4,7 +4,7 @@
 #include <string.h>
 #include "print_subject_helpers.h"
 
-void add_todo(const char subject[], const char username[]) {
+int add_todo(const char subject[], const char username[]) {
 	FILE* f_nextid = fopen(FILE_NEXTID, "r");
 	int todoId; // TodoId of the todo that we're about to add
 	fscanf(f_nextid, "%d", &todoId);	
@@ -33,11 +33,11 @@ void add_todo(const char subject[], const char username[]) {
 
 	if(strcmp(noNewLine, EXIT_CODE) == 0) {
 		printf("| Bot> No changes. Aborted.\n");
-		return;
+		return FALSE;
 	}
 		
 	fprintf(f_subject, "%d:%s", todoId, todo);
 	fclose(f_subject);
 	printf("| Bot> Todo added successfully.\n");
-	return;	
+	return TRUE;
 }

@@ -4,7 +4,7 @@
 #include "remove_subject_helpers.h"
 #include <string.h>
 
-void proc_dels(void) {
+int proc_dels(void) {
 	char username[USERNAME_SIZE];
     FILE* file_usr = fopen(FILE_USERNAME, "r");
     fscanf(file_usr, "%s", username);
@@ -12,7 +12,7 @@ void proc_dels(void) {
 
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> There is nothing to delete.\n");
-		return;
+		return FALSE;
 	}
 
 	
@@ -30,7 +30,7 @@ void proc_dels(void) {
 
 	if(yn == 'N' || yn == 'n') {
 		printf("| Bot> No changes.\n");
-		return;
+		return FALSE;
 	}
 		
 	print_subjects();
@@ -41,19 +41,19 @@ void proc_dels(void) {
 	correct(chosen_file);
 	if(strcmp(chosen_file, EXIT_CODE) == 0) {
 		printf("| Bot> No changes. Aborted.\n");
-		return;
+		return FALSE;
 	}
 
 
 	if(file_exists(chosen_file) == TRUE) {
 		delete_file(chosen_file);
 		printf("| Bot> Deletion successful of \'%s\'\n", chosen_file);
-		return;
+		return TRUE;
 	}
 	else {
 		printf("| Bot> The subject you typed in does not exist.\n");
 		printf("| Bot> Deletion failed.\n");
-		return;
+		return FALSE;
 	}
 }
 

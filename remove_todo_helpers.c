@@ -6,7 +6,7 @@
 #include "print_subject_helpers.h"
 
 
-void delete_todo(char subject[]) {
+int delete_todo(char subject[]) {
 	
 	char username[USERNAME_SIZE];
     FILE* file_usr = fopen(FILE_USERNAME, "r");
@@ -28,18 +28,19 @@ void delete_todo(char subject[]) {
 		}
 		else if(isX(line) == TRUE) {
 			printf("| Bot> No changes.\n");
-			return;
+			return FALSE;
 		}
 	} while(accepted == 0);
 	print_line();
 
 	if(todoIdExists(subject, del_id) == FALSE) {
 		printf("| Bot> The number you entered does not match any todo. Aborted.\n");
-		return;
+		return FALSE;
 	}
 	
 	remove_todo(subject, del_id);
 	printf("| Bot> Todo removed successfully.\n");
+	return TRUE;
  
 }
 

@@ -4,7 +4,7 @@
 #include "util.h"
 #include "remove_subject_helpers.h"
 
-void proc_init(void) {
+int proc_init(void) {
 
 	char username[USERNAME_SIZE];
     FILE* file_usr = fopen(FILE_USERNAME, "r");
@@ -24,7 +24,7 @@ void proc_init(void) {
 
     if(yn == 'N' || yn == 'n') {
         printf("| Bot> No changes.\n");
-        return;
+        return FALSE;
     }
 
 	FILE* all_files = fopen(FILE_LIST, "r");
@@ -42,6 +42,7 @@ void proc_init(void) {
 	fprintf(f_ne, "%s", EMPTY_STRING);
 	fclose(f_ne);
 	printf("| Bot> Reset complete.\n");
+	return TRUE;
 }
 
 

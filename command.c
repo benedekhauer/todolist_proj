@@ -12,12 +12,15 @@
 #define NAME_RNDM "rndm"
 #define NAME_CLRS "clrs"
 #define NAME_PRNT "prnt"
+#define NAME_USRN "usrn"
+#define NAME_INFO "info"
 #define NAME_HELP "help"
 #define NAME_EXIT "exit"
 
 int isValid(command c) {
 	if(c == init || c == disp || c == adds || c == addt || c == dels || c == delt || 
-	   c == rndm || c == clrs || c == prnt || c == help || c == exit) {
+	   c == rndm || c == clrs || c == prnt || c == usrn || c == info || c == help || 
+	   c == exit) {
 		return TRUE;
 	}
 	return FALSE;
@@ -50,6 +53,8 @@ void print_command(command cmd) {
 		case rndm: printf("rndm\n");return;
 		case clrs: printf("clrs\n");return;
 		case prnt: printf("prnt\n");return;
+		case usrn: printf("usrn\n");return;
+		case info: printf("info\n");return;
 		case help: printf("help\n");return;
 		case exit: printf("exit\n"); return;
 		default: printf("none\n");return;
@@ -71,6 +76,8 @@ command parse_command(char read[]) {
 	else if(strcmp(str, NAME_RNDM) == 0) {return rndm;}
 	else if(strcmp(str, NAME_CLRS) == 0) {return clrs;}
 	else if(strcmp(str, NAME_PRNT) == 0) {return prnt;}
+	else if(strcmp(str, NAME_USRN) == 0) {return usrn;}
+	else if(strcmp(str, NAME_INFO) == 0) {return info;}
 	else if(strcmp(str, NAME_HELP) == 0) {return help;}
 	else if(strcmp(str, NAME_EXIT) == 0) {return exit;}
 	else {return none;}	
