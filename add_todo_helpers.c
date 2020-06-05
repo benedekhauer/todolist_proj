@@ -6,7 +6,7 @@
 
 int add_todo(const char subject[], const char username[]) {
 	FILE* f_nextid = fopen(FILE_NEXTID, "r");
-	int todoId; // TodoId of the todo that we're about to add
+	int todoId;
 	fscanf(f_nextid, "%d", &todoId);	
 	int nextId = todoId + 1;
 	fclose(f_nextid);
@@ -22,7 +22,7 @@ int add_todo(const char subject[], const char username[]) {
 	char todo[MAX_STR_SIZE];
 	printf("| Bot: What do you want your todo to be? (< %d chars)\n", MAX_TODO_SIZE);
 	do {
-		printf("| %s> (EXIT to abort): ", username);
+		printf("| %s> (%s to abort): ", username, EXIT_CODE);
 		fgets(todo, MAX_STR_SIZE, stdin);	
 	} while(strlen(todo) > MAX_TODO_SIZE);
 
@@ -32,12 +32,14 @@ int add_todo(const char subject[], const char username[]) {
 	correct(noNewLine);
 
 	if(strcmp(noNewLine, EXIT_CODE) == 0) {
-		printf("| Bot> No changes. Aborted.\n");
 		return FALSE;
 	}
 		
 	fprintf(f_subject, "%d:%s", todoId, todo);
 	fclose(f_subject);
 	printf("| Bot> Todo added successfully.\n");
-	return TRUE;
+	printf("| Bot> Do you want to add another todo to %s?\n", subject);
+
+	return confirm(username) ? add_todo(subject, username) : TRUE;
+	
 }

@@ -4,7 +4,7 @@
 #define TRUE 1
 #define ZERO 0
 
-#define EXIT_CODE "EXIT"
+#define EXIT_CODE "X"
 #define ALL_CODE "ALL"
 
 #define EXEC_FILE "main"
@@ -29,11 +29,15 @@
 
 void print_line(void);
 
+const char* get_username(void);
+
 void print_subjects(void);
 
 int isFileEmpty(const char[]);
 
 char parse_answer(const char[]);
+
+int confirm(const char[]);
 
 void print_nonempty_subjects(void);
 

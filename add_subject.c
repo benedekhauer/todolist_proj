@@ -6,11 +6,8 @@
 #include "remove_subject_helpers.h"
 void proc_adds(void) {
 	char filename[MAX_STR_SIZE];
-	char username[USERNAME_SIZE];
-	FILE* file_usr = fopen(FILE_USERNAME, "r");
-	if(file_usr == NULL) {return;}
-	fscanf(file_usr, "%s", username);
-	fclose(file_usr);
+	const char* username = get_username();
+	
 	do {
 		printf("| Bot> Enter subject (max %d chars, only letters and numbers).\n", MAX_FILENAME_SIZE-1);
 		printf("| %s> (EXIT to abort): ", username);

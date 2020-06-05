@@ -5,11 +5,9 @@
 #include <string.h>
 
 int proc_dels(void) {
-	char username[USERNAME_SIZE];
-    FILE* file_usr = fopen(FILE_USERNAME, "r");
-    fscanf(file_usr, "%s", username);
-    fclose(file_usr);
 
+	const char* username = get_username();
+	
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> There is nothing to delete.\n");
 		return FALSE;
@@ -19,16 +17,8 @@ int proc_dels(void) {
 	printf("| Bot> *Warning*: If you delete a subject,\n");
 	printf("|                 all the todos inside are going to be lost.\n");
 	printf("| Bot> Do you wish to continue?\n"); 
-	char yn = 'X';
-	while(yn == 'X') {
-        printf("| %s> (Y/N): ", username);
-        char s_answer[MAX_STR_SIZE];
-        char s_check[1];
-        fgets(s_answer, MAX_STR_SIZE, stdin);
-      	yn = parse_answer(s_answer);
-    }
-
-	if(yn == 'N' || yn == 'n') {
+	
+	if(confirm(username) == FALSE) {
 		printf("| Bot> No changes.\n");
 		return FALSE;
 	}
@@ -36,7 +26,7 @@ int proc_dels(void) {
 	print_subjects();
 	char chosen_file[MAX_STR_SIZE];
 	printf("| Bot> Which subject do you want to delete?\n");	
-	printf("| %s> (EXIT to abort): ", username);
+	printf("| %s> (%s to abort): ", username, EXIT_CODE);
 	fgets(chosen_file, MAX_STR_SIZE, stdin);
 	correct(chosen_file);
 	if(strcmp(chosen_file, EXIT_CODE) == 0) {

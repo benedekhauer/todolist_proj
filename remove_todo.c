@@ -16,10 +16,7 @@ int proc_delt(void) {
 		return FALSE;
 	}
 
-	char username[USERNAME_SIZE];
-    FILE* file_usr = fopen(FILE_USERNAME, "r");
-    fscanf(file_usr, "%s", username);
-    fclose(file_usr);
+	const char* username = get_username();
 
 	char subject[MAX_STR_SIZE];
 
@@ -27,7 +24,7 @@ int proc_delt(void) {
 	
 	printf("| Bot> In which subject should I delete a todo?\n");
 	print_line();
-	printf("| %s> (subject, EXIT to abort): ", username);
+	printf("| %s> (subject, %s to abort): ", username, EXIT_CODE);
 	fgets(subject, MAX_STR_SIZE, stdin);
 	correct(subject);
 

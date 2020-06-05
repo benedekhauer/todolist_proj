@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "util.h"
 #include <string.h>
+#include <stdlib.h>
 
 void print_line(void) {
     printf("|-------------------------------------------------------------------\n");
@@ -22,6 +23,16 @@ void print_subjects(void) {
 	fclose(file);
 }
 
+const char* get_username(void) {
+	char username[USERNAME_SIZE];
+    FILE* file_usr = fopen(FILE_USERNAME, "r");
+    fscanf(file_usr, "%s", username);
+    fclose(file_usr);
+	char* toRet = calloc(USERNAME_SIZE, sizeof(char));
+	strncpy(toRet, username, USERNAME_SIZE);
+	return toRet;
+}
+
 int isFileEmpty(const char filename[]) {
 	FILE* file = fopen(filename, "r");
 	char first;
@@ -38,11 +49,22 @@ char parse_answer(const char read[]) {
     char str[1];
     str[0] = read[0];
     if(read[1] != '\n') {return 'X';}
-    if(strcmp(str, "Y") == 0) {return 'Y';}
-    else if(strcmp(str, "N") == 0) {return 'N';}
-    else if(strcmp(str, "n") == 0) {return 'n';}
-    else if(strcmp(str, "y") == 0) {return 'y';}
+    if(strcmp(str, "Y") == 0 || strcmp(str, "y") == 0) {return 'Y';}
+    else if(strcmp(str, "N") == 0 || strcmp(str, "n") == 0) {return 'N';}
     else {return 'X';}
+}
+
+
+int confirm(const char username[]) {
+	char yn = 'X';
+    while(yn == 'X') {
+        printf("| %s> (Y/N): ", username);
+        char s_answer[MAX_STR_SIZE];
+        char s_check[1];
+        fgets(s_answer, MAX_STR_SIZE, stdin);
+        yn = parse_answer(s_answer);
+    }
+	return (yn == 'y' || yn == 'Y') ? TRUE : FALSE;
 }
 
 

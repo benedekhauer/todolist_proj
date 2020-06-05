@@ -6,10 +6,7 @@
 #include "remove_subject_helpers.h"
 
 int proc_addt(void) {
-	char username[USERNAME_SIZE];
-	FILE* file_usr = fopen(FILE_USERNAME, "r");
-	fscanf(file_usr, "%s", username);
-	fclose(file_usr);
+	const char* username = get_username();
 
 	char unchanged[MAX_STR_SIZE];
 	char subject[MAX_STR_SIZE];
@@ -21,7 +18,7 @@ int proc_addt(void) {
 	
 	print_subjects();
 	printf("| Bot> Which subject do you want to add the todo to?\n"); 
-	printf("| %s> (EXIT to abort): ", username);
+	printf("| %s> (%s to abort): ", username, EXIT_CODE);
 	fgets(subject, MAX_STR_SIZE, stdin);
 	
 	strncpy(unchanged, subject, MAX_FILENAME_SIZE);	

@@ -8,10 +8,12 @@
 
 int delete_todo(char subject[]) {
 	
-	char username[USERNAME_SIZE];
-    FILE* file_usr = fopen(FILE_USERNAME, "r");
-    fscanf(file_usr, "%s", username);
-    fclose(file_usr);
+	const char* username = get_username();
+
+	if(isFileEmpty(subject) == TRUE) {
+		printf("| Bot> The subject is empty\n");
+		return FALSE;
+	}
 
 	print_full_subject(subject);
 	int del_id;
@@ -19,15 +21,16 @@ int delete_todo(char subject[]) {
 	print_line();
 	char line[MAX_STR_SIZE];
 	int accepted = 0;
+
+
 	do {
-		printf("| %s> (X to exit): ", username); 
+		printf("| %s> (%s to exit): ", username, EXIT_CODE);
 		fgets(line, MAX_STR_SIZE, stdin);
 		if(isNumber(line) == TRUE) {
 			del_id = atoi(line);
 			accepted = 1;
 		}
 		else if(isX(line) == TRUE) {
-			printf("| Bot> No changes.\n");
 			return FALSE;
 		}
 	} while(accepted == 0);
@@ -40,7 +43,16 @@ int delete_todo(char subject[]) {
 	
 	remove_todo(subject, del_id);
 	printf("| Bot> Todo removed successfully.\n");
-	return TRUE;
+	
+	if(isFileEmpty(subject) == TRUE) {
+		printf("| Bot> %s is now empty.\n", subject);
+		return FALSE;
+	}	
+
+	printf("| Bot> Do you want to remove another todo from %s?\n", subject);
+
+
+	return confirm(username) ? delete_todo(subject) : TRUE;
  
 }
 
@@ -50,7 +62,6 @@ void print_full_subject(char toPrint[]) {
 	char separator;
 	char todo[MAX_STR_SIZE];
 	char dummy[MAX_STR_SIZE];
-	//printf("####");
 	print_subject_name(toPrint, FALSE);
 	printf("########");
 	printf("\n");

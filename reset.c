@@ -6,10 +6,7 @@
 
 int proc_init(void) {
 
-	char username[USERNAME_SIZE];
-    FILE* file_usr = fopen(FILE_USERNAME, "r");
-    fscanf(file_usr, "%s", username);
-    fclose(file_usr);
+	const char* username = get_username();
 
 	printf("| Bot> ** WARNING ** All subjects and todos will be deleted.\n");
 	printf("| Bot> Do you wish to continue?\n");

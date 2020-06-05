@@ -4,13 +4,12 @@
 #include <string.h>
 #include "remove_subject_helpers.h"
 #include "clear_subject_helpers.h"
+#include <stdlib.h>
+
 
 int proc_clrs(void) {
 
-	char username[USERNAME_SIZE];
-    FILE* file_usr = fopen(FILE_USERNAME, "r");
-    fscanf(file_usr, "%s", username);
-    fclose(file_usr);
+	char* username = get_username();
 	
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> There is no subject to clear.\n");
@@ -25,7 +24,7 @@ int proc_clrs(void) {
     char subject[MAX_STR_SIZE];
     print_nonempty_subjects();
     printf("| Bot> Which subject do you want to clear (remove all todos)?\n");
-    printf("| %s> (EXIT to abort, ALL to clear all): ", username);
+    printf("| %s> (%s to abort, %s to clear all): ", username, EXIT_CODE, ALL_CODE);
     fgets(subject, MAX_STR_SIZE, stdin);
 	correct(subject);
     strncpy(unchanged, subject, MAX_FILENAME_SIZE);
