@@ -10,37 +10,31 @@ void proc_adds(void) {
 	
 	do {
 		printf("| Bot> Enter subject (max %d chars, only letters and numbers).\n", MAX_FILENAME_SIZE-1);
-		printf("| %s> (EXIT to abort): ", username);
+		printf("| %s> (%s to abort): ", username, EXIT_CODE);
 		fgets(filename, MAX_STR_SIZE, stdin);
 	} while(isAccepted(filename) == FALSE || strlen(filename) > MAX_FILENAME_SIZE);
 		
 	correct(filename);
 	
 	if(strcmp(filename, EXIT_CODE) == 0) {
-		print_line();
-		printf("| Bot> ### Creation aborted.\n");
 		return;
 	}
 	
 	if(strcmp(filename, ALL_CODE) == 0) {
-		print_line();
 		printf("| Bot> ### Failed. The name of a subject cannot be \'%s\'\n", ALL_CODE);
 	}
 	
 	if(strcmp(filename, EXEC_FILE) == 0) {
-		print_line();
 		printf("| Bot> ### Failed. The name of your subject cannot be \'%s\'\n", EXEC_FILE);
 		return;
 	}
 
 	if(strcmp(filename, MAKEFILE) == 0) {
-		print_line();
 		printf("| Bot> ### Failed. The name of your subject cannot be \'%s\'\n", MAKEFILE);
 		return;
 	}
 
 	if(file_exists(filename) == TRUE) {
-		print_line();
 		printf("| Bot> ### Creation of %s failed (subject already exists).\n", filename);
 		return;
 	}

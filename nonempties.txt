@@ -1,7 +1,7 @@
 archsoc
 toc
-progos
 parcon
 probastat
+progos
 viscomp
 shs

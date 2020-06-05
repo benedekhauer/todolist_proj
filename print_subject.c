@@ -25,9 +25,12 @@ void proc_prnt(void) {
 	print_nonempty_subjects();
 
 	printf("| Bot> Enter the subject you want to display.\n");
-	printf("| %s> (Subject): ", username);
+	printf("| %s> (Subject, %s to exit): ", username, EXIT_CODE);
 	fgets(chosen_file, MAX_STR_SIZE, stdin);
 	correct(chosen_file);
+	if(strcmp(chosen_file, EXIT_CODE) == 0) {
+		return;
+	}
 	print_line();
 	print_subject(chosen_file);
 	return;
