@@ -1,7 +1,0 @@
-archsoc
-toc
-parcon
-progos
-probastat
-viscomp
-shs
