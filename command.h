@@ -14,7 +14,7 @@ typedef enum {
 	usrn,
 	info,
 	help,
-	exit,
+	quit,
 	none
 } command;
 

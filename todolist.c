@@ -17,10 +17,7 @@
 
 int main(void) {
 	int username_update = FALSE;
-	char username[USERNAME_SIZE];
-	FILE* file_usr = fopen(FILE_USERNAME, "r");
-	fscanf(file_usr, "%s", username);
-	fclose(file_usr);
+	char* username = get_username();
 	command cmd = none;
 	print_line();
 	printf("|---------------------------- TODOLIST -----------------------------\n");
@@ -36,10 +33,10 @@ int main(void) {
 	
 	int change = FALSE;
 	print_line();
-	while(cmd != exit) {
+	while(cmd != quit) {
 		switch(cmd) {
 			case init:
-				change = proc_init();
+				change = proc_init(username);
 				print_line();
 				break;
 			case disp:
@@ -47,19 +44,19 @@ int main(void) {
 				print_line();
 				break;
 			case adds:
-				proc_adds();
+				proc_adds(username);
 				print_line();
 				break;
 			case addt:
-				change = proc_addt();
+				change = proc_addt(username);
 				print_line();
 				break;
 			case dels:
-				change = proc_dels();
+				change = proc_dels(username);
 				print_line();
 				break;
 			case delt:
-				change = proc_delt();
+				change = proc_delt(username);
 				print_line();
 				break;
 			case rndm:
@@ -67,15 +64,15 @@ int main(void) {
 				print_line();
 				break;
 			case clrs:
-				change = proc_clrs();
+				change = proc_clrs(username);
 				print_line();
 				break;
 			case prnt:
-				proc_prnt();
+				proc_prnt(username);
 				print_line();
 				break;
 			case usrn:
-				username_update = proc_usrn();
+				username_update = proc_usrn(username);
 				print_line();
 				break;
 			case info:
@@ -86,7 +83,7 @@ int main(void) {
 				print_commands();
 				print_line();
 				break;
-			case exit:
+			case quit:
 				//do nothing
 				break;
 			default:
@@ -97,9 +94,8 @@ int main(void) {
 		}
 
 		if(username_update == TRUE) {
-			FILE* file_usr = fopen(FILE_USERNAME, "r");
-    		fscanf(file_usr, "%s", username);
-    		fclose(file_usr);
+			M_FREE(username);
+			username = get_username();
 		}
 	
 
@@ -113,6 +109,7 @@ int main(void) {
 		print_line();
 
 	}
+	M_FREE(username);
 	printf("|------------------------- END OF TODOLIST -------------------------\n");
 	return 0;		
 }

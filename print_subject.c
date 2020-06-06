@@ -4,7 +4,7 @@
 #include "util.h"
 #include "print_subject_helpers.h"
 
-void proc_prnt(void) {
+void proc_prnt(char* username) {
 
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> You have not subject to print.\n");
@@ -15,10 +15,6 @@ void proc_prnt(void) {
 		printf("| Bot> All your subjects are empty.\n");
 		return;
 	}
-	char username[USERNAME_SIZE];
-    FILE* file_usr = fopen(FILE_USERNAME, "r");
-    fscanf(file_usr, "%s", username);
-    fclose(file_usr);
 
 	char chosen_file[MAX_STR_SIZE];
 

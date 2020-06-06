@@ -1,1 +1,1 @@
-int proc_usrn(void);
+int proc_usrn(char*);

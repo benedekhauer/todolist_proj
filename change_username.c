@@ -3,12 +3,7 @@
 #include "util.h"
 #include <string.h>
 
-int proc_usrn(void) {
-
-	char username[USERNAME_SIZE];
-    FILE* file_usr = fopen(FILE_USERNAME, "r");
-    fscanf(file_usr, "%s", username);
-    fclose(file_usr);
+int proc_usrn(char* username) {
 
 	char newUsername[MAX_STR_SIZE];
 
@@ -34,7 +29,7 @@ int proc_usrn(void) {
 		return FALSE;
 	}
 
-	file_usr = fopen(FILE_USERNAME, "w");
+	FILE* file_usr = fopen(FILE_USERNAME, "w");
 	fprintf(file_usr, "%s\n", newUsername);
 	fclose(file_usr);
 

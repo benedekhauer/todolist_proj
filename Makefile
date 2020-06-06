@@ -1,4 +1,4 @@
-main: main.o command.o add_subject.o add_subject_helpers.o remove_subject.o \
+todolist: todolist.o command.o add_subject.o add_subject_helpers.o remove_subject.o \
   remove_subject_helpers.o util.o add_todo_helpers.o add_todo.o clear_subject.o \
   clear_subject_helpers.o print_subject.o print_subject_helpers.o reset.o \
   remove_todo.o remove_todo_helpers.o random_todo.o update.o update_helpers.o \
@@ -28,7 +28,7 @@ display_subjects.o: display_subjects.c display_subjects.h util.h
 
 information.o: information.c information.h
 
-main.o: main.c command.h util.h add_subject.h remove_subject.h add_todo.h \
+todolist.o: todolist.c command.h util.h add_subject.h remove_subject.h add_todo.h \
  clear_subject.h print_subject.h
 
 print_subject.o: print_subject.c print_subject.h print_subject_helpers.h \

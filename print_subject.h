@@ -1,1 +1,1 @@
-void proc_prnt(void);
+void proc_prnt(char*);

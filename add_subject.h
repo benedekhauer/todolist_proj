@@ -1,1 +1,1 @@
-void proc_adds(void);
+int proc_adds(char*);

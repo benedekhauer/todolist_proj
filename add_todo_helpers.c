@@ -32,6 +32,7 @@ int add_todo(const char subject[], const char username[]) {
 	correct(noNewLine);
 
 	if(strcmp(noNewLine, EXIT_CODE) == 0) {
+		fclose(f_subject);
 		return FALSE;
 	}
 		

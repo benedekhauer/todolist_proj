@@ -3,6 +3,15 @@
 #include "util.h"
 #include "add_subject_helpers.h"
 
+void add_to_gitignore(char filename[]) {
+	FILE* gitignore = fopen(".gitignore", "a");
+	if(gitignore == NULL) {
+		return;
+	}
+	fprintf(gitignore, "%s\n", filename);
+	fclose(gitignore);
+}
+
 int isAscii(char c) {
 	if(c == '\n' || c == '\0') { return TRUE;}
 	if(c >= 48 && c <= 57) {return TRUE;}

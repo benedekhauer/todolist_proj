@@ -4,7 +4,7 @@
 #include "remove_todo.h"
 #include "remove_todo_helpers.h"
 
-int proc_delt(void) {
+int proc_delt(char* username) {
 
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> Your subject list is empty.\n");
@@ -15,8 +15,6 @@ int proc_delt(void) {
 		printf("| Bot> All your subjects are empty.\n");
 		return FALSE;
 	}
-
-	const char* username = get_username();
 
 	char subject[MAX_STR_SIZE];
 
@@ -41,6 +39,6 @@ int proc_delt(void) {
 		printf("| Bot> The file you want to delete from is empty.\n");
 		return FALSE;
 	}
-	return delete_todo(subject);
+	return delete_todo(subject, username);
 	
 }

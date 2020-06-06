@@ -5,8 +5,7 @@
 #include "add_todo_helpers.h"
 #include "remove_subject_helpers.h"
 
-int proc_addt(void) {
-	const char* username = get_username();
+int proc_addt(char* username) {
 
 	char unchanged[MAX_STR_SIZE];
 	char subject[MAX_STR_SIZE];

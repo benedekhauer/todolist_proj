@@ -23,7 +23,7 @@ void print_subjects(void) {
 	fclose(file);
 }
 
-const char* get_username(void) {
+char* get_username(void) {
 	char username[USERNAME_SIZE];
     FILE* file_usr = fopen(FILE_USERNAME, "r");
     fscanf(file_usr, "%s", username);
@@ -92,14 +92,17 @@ int allEmpty(void) {
 		fgets(line, MAX_FILENAME_SIZE, all_files);
 		correct(line);
 		if(isFileEmpty(line) == FALSE) {
+			fclose(all_files);
 			return FALSE;
 		}
 	}
+	fclose(all_files);
 	return TRUE;
 }	
 
 void correct(char filename[]) {
-    for(int i = 0; i < MAX_FILENAME_SIZE+1; i++) {
+    size_t len = strlen(filename);
+	for(int i = 0; i < len; i++) {
         if(filename[i] == '\n') {
             filename[i] = '\0';
             return;
@@ -162,5 +165,6 @@ int line_count(char file[]) {
 			count++;
 		}	
 	}
+	fclose(f_toCount);
 	return count;
 }

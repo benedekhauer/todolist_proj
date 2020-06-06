@@ -41,5 +41,6 @@ void print_subject(const char subject[]) {
     for(int i = 0; i < SUBJECT_TITLE_SIZE; i++) {
         printf("#");
     }
+	fclose(f_subj);
 	printf("\n");
 }

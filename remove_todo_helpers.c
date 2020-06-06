@@ -6,9 +6,7 @@
 #include "print_subject_helpers.h"
 
 
-int delete_todo(char subject[]) {
-	
-	const char* username = get_username();
+int delete_todo(char subject[], char* username) {
 
 	if(isFileEmpty(subject) == TRUE) {
 		printf("| Bot> The subject is empty\n");
@@ -52,7 +50,7 @@ int delete_todo(char subject[]) {
 	printf("| Bot> Do you want to remove another todo from %s?\n", subject);
 
 
-	return confirm(username) ? delete_todo(subject) : TRUE;
+	return confirm(username) ? delete_todo(subject, username) : TRUE;
  
 }
 
@@ -85,12 +83,13 @@ void print_full_subject(char toPrint[]) {
     for(int i = 0; i < SUBJECT_TITLE_SIZE+8; i++) {
         printf("#");
     }
+	fclose(f_subj);
     printf("\n");
 }
 
 
 int isNumber(char str[]) {
-	char currentChar;
+	char currentChar = 'X';
 	int index = 0;
 	if(str[0] == '\n') {return FALSE;}
 	while(currentChar != '\n') {
@@ -125,9 +124,11 @@ int todoIdExists(char subject[], int id) {
 		fscanf(f_subj, "%d", &currentId);
 		fgets(dummy, MAX_STR_SIZE, f_subj);
 		if(currentId == id) {
+			fclose(f_subj);
 			return TRUE;
 		}
 	}
+	fclose(f_subj);
 	return FALSE;
 }
 

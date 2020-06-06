@@ -1,3 +1,6 @@
+#pragma once
+#include <stdlib.h>
+
 #define SUCCESS 0
 #define FAILURE 1
 #define FALSE 0
@@ -7,7 +10,7 @@
 #define EXIT_CODE "X"
 #define ALL_CODE "ALL"
 
-#define EXEC_FILE "main"
+#define EXEC_FILE "todolist"
 
 #define FILE_LIST "all_files.txt"
 #define FILE_NE "nonempties.txt"
@@ -27,9 +30,11 @@
 
 #define EMPTY_STRING ""
 
+#define M_FREE(ptr) {if((ptr)!=NULL){free(ptr);ptr=NULL;}}
+
 void print_line(void);
 
-const char* get_username(void);
+char* get_username(void);
 
 void print_subjects(void);
 

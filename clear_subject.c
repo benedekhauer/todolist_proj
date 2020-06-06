@@ -7,9 +7,8 @@
 #include <stdlib.h>
 
 
-int proc_clrs(void) {
+int proc_clrs(char* username) {
 
-	char* username = get_username();
 	
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> There is no subject to clear.\n");
@@ -29,7 +28,8 @@ int proc_clrs(void) {
 	correct(subject);
     strncpy(unchanged, subject, MAX_FILENAME_SIZE);
 
-    for(int i = 0; i < MAX_FILENAME_SIZE + 1; i++) {
+	size_t len = strlen(subject);
+    for(int i = 0; i < len; i++) {
         if(subject[i] == '\n') {
             subject[i] = '\0';
             break;

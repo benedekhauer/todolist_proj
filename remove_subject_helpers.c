@@ -25,5 +25,31 @@ void delete_file(char filename[]) {
 	FILE* newSwap = fopen(FILE_SWAP, "w");
 	fprintf(newSwap, "%s", EMPTY_STRING);
 	fclose(newSwap);
+	remove_from_gitignore(filename);
 	return;
+}
+
+void remove_from_gitignore(char filename[]) {
+	FILE* gitignore = fopen(".gitignore", "r");
+    FILE* swap = fopen(FILE_SWAP, "w");
+    char line[MAX_STR_SIZE];
+    char dummy[MAX_STR_SIZE];
+    while(!feof(gitignore)) {
+        fgets(line, MAX_STR_SIZE, gitignore);
+        strncpy(dummy, line, MAX_STR_SIZE);
+        correct(dummy);
+        if(feof(gitignore)) {break;}
+        if(strcmp(dummy,filename) != 0) {
+            fprintf(swap, "%s", line);
+        }
+    }
+    fclose(gitignore);
+    fclose(swap);
+    remove(".gitignore");
+    rename(FILE_SWAP, ".gitignore");
+    FILE* newSwap = fopen(FILE_SWAP, "w");
+    fprintf(newSwap, "%s", EMPTY_STRING);
+    fclose(newSwap);
+    return;
+
 }

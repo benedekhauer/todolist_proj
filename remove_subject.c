@@ -4,9 +4,7 @@
 #include "remove_subject_helpers.h"
 #include <string.h>
 
-int proc_dels(void) {
-
-	const char* username = get_username();
+int proc_dels(char* username) {
 	
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> There is nothing to delete.\n");

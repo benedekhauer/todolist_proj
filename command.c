@@ -15,12 +15,12 @@
 #define NAME_USRN "usrn"
 #define NAME_INFO "info"
 #define NAME_HELP "help"
-#define NAME_EXIT "exit"
+#define NAME_QUIT "quit"
 
 int isValid(command c) {
 	if(c == init || c == disp || c == adds || c == addt || c == dels || c == delt || 
 	   c == rndm || c == clrs || c == prnt || c == usrn || c == info || c == help || 
-	   c == exit) {
+	   c == quit) {
 		return TRUE;
 	}
 	return FALSE;
@@ -56,7 +56,7 @@ void print_command(command cmd) {
 		case usrn: printf("usrn\n");return;
 		case info: printf("info\n");return;
 		case help: printf("help\n");return;
-		case exit: printf("exit\n"); return;
+		case quit: printf("quit\n"); return;
 		default: printf("none\n");return;
 	}
 }
@@ -79,7 +79,7 @@ command parse_command(char read[]) {
 	else if(strcmp(str, NAME_USRN) == 0) {return usrn;}
 	else if(strcmp(str, NAME_INFO) == 0) {return info;}
 	else if(strcmp(str, NAME_HELP) == 0) {return help;}
-	else if(strcmp(str, NAME_EXIT) == 0) {return exit;}
+	else if(strcmp(str, NAME_QUIT) == 0) {return quit;}
 	else {return none;}	
 }
 
