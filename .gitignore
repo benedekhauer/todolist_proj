@@ -1,6 +1,7 @@
 todolist
 *.o
-*.txt
+all_files.txt
+improve.txt
 archsoc
 toc
 parcon

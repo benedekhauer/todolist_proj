@@ -31,13 +31,7 @@ int main(void) {
         cmd = parse_command(s_command);
     }
 
-	FILE* all = fopen(FILE_LIST, "r");
-	if(all == NULL) {
-		fclose(all);
-		all = fopen(FILE_LIST, "w");
-		fprintf(all, "%s", EMPTY_STRING);
-		fclose(all);
-	}
+	generate_files();
 		
 	int change = FALSE;
 	print_line();

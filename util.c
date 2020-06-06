@@ -7,6 +7,43 @@ void print_line(void) {
     printf("|-------------------------------------------------------------------\n");
 }
 
+void generate_files(void) {
+	FILE* all = fopen(FILE_LIST, "r");
+    if(all == NULL) {
+        all = fopen(FILE_LIST, "w");
+        fprintf(all, "%s", EMPTY_STRING);
+    }
+	fclose(all);
+	
+	FILE* nextId = fopen(FILE_NEXTID, "r");
+	if(nextId == NULL) {
+		nextId = fopen(FILE_NEXTID, "w");
+		fprintf(nextId, "%d", ZERO);
+	}
+	fclose(nextId);
+	
+	FILE* ne = fopen(FILE_NE, "r");
+	if(ne == NULL) {
+		ne = fopen(FILE_NE, "w");
+		fprintf(ne, "%s", EMPTY_STRING);
+	}
+	fclose(ne);
+
+	FILE* swap = fopen(FILE_SWAP, "r");
+	if(swap == NULL) {
+		swap = fopen(FILE_SWAP, "w");
+		fprintf(swap, "%s", EMPTY_STRING);
+	}
+	fclose(swap);
+
+	FILE* user = fopen(FILE_USERNAME, "r");
+	if(user == NULL) {
+		user = fopen(FILE_USERNAME, "w");
+		fprintf(user, "%s", DEFAULT_USERNAME);
+	}
+	fclose(user);
+}
+
 void print_subjects(void) {
 	FILE* file = fopen(FILE_LIST, "r");
 	char line[MAX_STR_SIZE];

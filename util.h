@@ -12,6 +12,7 @@
 
 #define EXEC_FILE "todolist"
 
+#define DEFAULT_USERNAME "You"
 #define FILE_LIST "all_files.txt"
 #define FILE_NE "nonempties.txt"
 #define FILE_NEXTID "next_id.txt"
@@ -31,6 +32,8 @@
 #define EMPTY_STRING ""
 
 #define M_FREE(ptr) {if((ptr)!=NULL){free(ptr);ptr=NULL;}}
+
+void generate_files(void);
 
 void print_line(void);
 
