@@ -30,7 +30,15 @@ int main(void) {
         fgets(s_command, MAX_STR_SIZE, stdin);
         cmd = parse_command(s_command);
     }
-	
+
+	FILE* all = fopen(FILE_LIST, "r");
+	if(all == NULL) {
+		fclose(all);
+		all = fopen(FILE_LIST, "w");
+		fprintf(all, "%s", EMPTY_STRING);
+		fclose(all);
+	}
+		
 	int change = FALSE;
 	print_line();
 	while(cmd != quit) {
