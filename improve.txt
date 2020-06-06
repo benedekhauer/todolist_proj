@@ -1,4 +1,3 @@
--> When adding a todo, possibility to add another one to the same subject.
 -> When adding a new subject, possibility to add a todo to it.
 -> Possibility of moving a todo to the top
 -> Adding importance to a todo (and file important.txt)
