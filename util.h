@@ -6,6 +6,7 @@
 #define FALSE 0
 #define TRUE 1
 #define ZERO 0
+#define FIRST_ID 1
 
 #define EXIT_CODE "X"
 #define ALL_CODE "ALL"
@@ -15,7 +16,6 @@
 #define DEFAULT_USERNAME "You"
 #define FILE_LIST "all_files.txt"
 #define FILE_NE "nonempties.txt"
-#define FILE_NEXTID "next_id.txt"
 #define FILE_CMD "commands.txt"
 #define FILE_USERNAME "username.txt"
 #define FILE_SWAP "swap.txt"

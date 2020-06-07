@@ -15,13 +15,6 @@ void generate_files(void) {
     }
 	fclose(all);
 	
-	FILE* nextId = fopen(FILE_NEXTID, "r");
-	if(nextId == NULL) {
-		nextId = fopen(FILE_NEXTID, "w");
-		fprintf(nextId, "%d", ZERO);
-	}
-	fclose(nextId);
-	
 	FILE* ne = fopen(FILE_NE, "r");
 	if(ne == NULL) {
 		ne = fopen(FILE_NE, "w");

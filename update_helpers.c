@@ -3,19 +3,6 @@
 #include <string.h>
 #include "util.h"
 
-void update_nextId(void) {
-	
-	if(isFileEmpty(FILE_LIST) == TRUE) {
-		return;
-	}
-
-	if(allEmpty() == TRUE) {
-		FILE* f_nextId = fopen(FILE_NEXTID, "w");
-		fprintf(f_nextId, "%d", ZERO);
-		fclose(f_nextId);
-	}
-}
-
 void update_nonempties(void) {
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		return;

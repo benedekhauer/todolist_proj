@@ -3,6 +3,7 @@
 #include "util.h"
 #include "remove_todo_helpers.h"
 #include "print_subject_helpers.h"
+#include "move_todo_helpers.h"
 
 void move_to_top(char subject[], char* username) {
 	print_full_subject(subject);
@@ -21,7 +22,7 @@ void move_to_top(char subject[], char* username) {
             matched = 1;
         }
         else if(isX(line) == TRUE) {
-            return FALSE;
+            return;
         }
     } while(matched == 0);
 	

@@ -5,15 +5,7 @@
 #include "print_subject_helpers.h"
 
 int add_todo(const char subject[], const char username[]) {
-	FILE* f_nextid = fopen(FILE_NEXTID, "r");
-	int todoId;
-	fscanf(f_nextid, "%d", &todoId);	
-	int nextId = todoId + 1;
-	fclose(f_nextid);
-	f_nextid = fopen(FILE_NEXTID, "w");
-	fprintf(f_nextid, "%d", nextId);
-	fclose(f_nextid);
-
+	int todoId = generate_id();
 
 	print_subject(subject);		
 
@@ -43,4 +35,37 @@ int add_todo(const char subject[], const char username[]) {
 
 	return confirm(username) ? add_todo(subject, username) : TRUE;
 	
+}
+
+
+int generate_id(void) {
+	if(allEmpty()) {
+		return FIRST_ID;
+	}
+	int nextUsableId = 2;
+	while(exists(nextUsableId) == TRUE) {
+		nextUsableId++;
+	}
+	return nextUsableId;
+}
+
+
+int exists(int id) {
+	FILE* f_nonempties = fopen(FILE_NE, "r");
+	char subject[MAX_STR_SIZE];
+	while(!feof(f_nonempties)) {
+		fgets(subject, MAX_STR_SIZE, f_nonempties);
+		if(feof(f_nonempties)) {break;}
+		correct(subject);
+		FILE* f_subj = fopen(subject, "r");
+		int readId;
+		char not_needed_rest[MAX_STR_SIZE];
+		while(!feof(f_subj)) {
+			fscanf(f_subj, "%d", &readId);
+			if(feof(f_subj)) {break;}
+			fgets(not_needed_rest, MAX_STR_SIZE, f_subj);
+			if(readId == id) {return TRUE;}
+		}
+	}
+	return FALSE;
 }

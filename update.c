@@ -3,6 +3,5 @@
 
 
 void update(void) {
-	update_nextId();
 	update_nonempties();
 }
