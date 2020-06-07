@@ -9,6 +9,7 @@
 #define NAME_ADDT "addt"
 #define NAME_DELS "dels"
 #define NAME_DELT "delt"
+#define NAME_MVTP "mvtp"
 #define NAME_RNDM "rndm"
 #define NAME_CLRS "clrs"
 #define NAME_PRNT "prnt"
@@ -19,8 +20,8 @@
 
 int isValid(command c) {
 	if(c == init || c == disp || c == adds || c == addt || c == dels || c == delt || 
-	   c == rndm || c == clrs || c == prnt || c == usrn || c == info || c == help || 
-	   c == quit) {
+	   c == mvtp || c == rndm || c == clrs || c == prnt || c == usrn || c == info ||
+	   c == help || c == quit) {
 		return TRUE;
 	}
 	return FALSE;
@@ -50,6 +51,7 @@ void print_command(command cmd) {
 		case addt: printf("addt\n");return;
 		case dels: printf("dels\n");return;
 		case delt: printf("delt\n");return;
+		case mvtp: printf("mvtp\n");return;
 		case rndm: printf("rndm\n");return;
 		case clrs: printf("clrs\n");return;
 		case prnt: printf("prnt\n");return;
@@ -73,6 +75,7 @@ command parse_command(char read[]) {
 	else if(strcmp(str, NAME_ADDT) == 0) {return addt;}
 	else if(strcmp(str, NAME_DELS) == 0) {return dels;}
 	else if(strcmp(str, NAME_DELT) == 0) {return delt;}
+	else if(strcmp(str, NAME_MVTP) == 0) {return mvtp;}
 	else if(strcmp(str, NAME_RNDM) == 0) {return rndm;}
 	else if(strcmp(str, NAME_CLRS) == 0) {return clrs;}
 	else if(strcmp(str, NAME_PRNT) == 0) {return prnt;}
@@ -82,19 +85,3 @@ command parse_command(char read[]) {
 	else if(strcmp(str, NAME_QUIT) == 0) {return quit;}
 	else {return none;}	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

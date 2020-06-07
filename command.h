@@ -8,6 +8,7 @@ typedef enum {
 	addt,
 	dels,
 	delt,
+	mvtp,
 	rndm,
 	clrs,
 	prnt,

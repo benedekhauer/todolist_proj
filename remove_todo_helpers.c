@@ -8,11 +8,6 @@
 
 int delete_todo(char subject[], char* username) {
 
-	if(isFileEmpty(subject) == TRUE) {
-		printf("| Bot> The subject is empty\n");
-		return FALSE;
-	}
-
 	print_full_subject(subject);
 	int del_id;
 	printf("| Bot> Enter the number of the todo you want to delete.\n");

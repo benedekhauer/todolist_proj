@@ -14,6 +14,7 @@
 #include "display_subjects.h"
 #include "change_username.h"
 #include "information.h"
+#include "move_todo.h"
 
 int main(void) {
 	int username_update = FALSE;
@@ -61,6 +62,10 @@ int main(void) {
 				change = proc_delt(username);
 				print_line();
 				break;
+			case mvtp:
+				proc_mvtp(username);
+				print_line();
+				break;	
 			case rndm:
 				proc_rndm();
 				print_line();
