@@ -9,6 +9,12 @@ int proc_addt(char* username) {
 
 	char unchanged[MAX_STR_SIZE];
 	char subject[MAX_STR_SIZE];
+
+	int id = generate_id();
+	if(id > MAX_TODO_COUNT) {
+		printf("| Bot> You cannot add any more todos.\n");
+		return FALSE;
+	}
 	
 	if(isFileEmpty(FILE_LIST)) {
 		printf("| Bot> You have no subject to add a todo to.\n");
@@ -33,7 +39,7 @@ int proc_addt(char* username) {
 	
 	
 	if(file_exists(subject) == TRUE) {
-		return add_todo(subject, username);
+		return add_todo(subject, username, id);
 	}
 	else {
 		printf("| Bot> The subject you typed in does not exist.\n");

@@ -8,6 +8,8 @@
 #define ZERO 0
 #define FIRST_ID 1
 
+#define MAX_TODO_COUNT 999999
+
 #define EXIT_CODE "X"
 #define ALL_CODE "ALL"
 
@@ -30,7 +32,7 @@
 #define SUBJECT_TITLE_SIZE 46
 
 #define EMPTY_STRING ""
-
+#define HASH "#"
 #define M_FREE(ptr) {if((ptr)!=NULL){free(ptr);ptr=NULL;}}
 
 void generate_files(void);
@@ -40,6 +42,10 @@ void print_line(void);
 char* get_username(void);
 
 void print_subjects(void);
+
+int get_nb_todos(const char[]);
+
+int get_digits(int);
 
 int isFileEmpty(const char[]);
 

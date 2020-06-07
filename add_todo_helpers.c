@@ -4,8 +4,11 @@
 #include <string.h>
 #include "print_subject_helpers.h"
 
-int add_todo(const char subject[], const char username[]) {
-	int todoId = generate_id();
+int add_todo(const char subject[], const char username[], int todoId) {
+	if(todoId > MAX_TODO_COUNT) {
+		printf("| Bot> You cannot add any more todos\n");
+		return TRUE;
+	}
 
 	print_subject(subject);		
 
@@ -33,7 +36,7 @@ int add_todo(const char subject[], const char username[]) {
 	printf("| Bot> Todo added successfully.\n");
 	printf("| Bot> Do you want to add another todo to %s?\n", subject);
 
-	return confirm(username) ? add_todo(subject, username) : TRUE;
+	return confirm(username) ? add_todo(subject, username, generate_id()) : TRUE;
 	
 }
 

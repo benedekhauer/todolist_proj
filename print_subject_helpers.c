@@ -16,6 +16,8 @@ void print_subject(const char subject[]) {
 
 	print_subject_name(subject, FALSE);	
 	printf("\n");
+	int nb_todos = get_nb_todos(subject);
+	print_count_line(nb_todos);
 	FILE* f_subj = fopen(subject, "r");
 	int todo_id;
 	char dot_dot;
@@ -44,3 +46,29 @@ void print_subject(const char subject[]) {
 	fclose(f_subj);
 	printf("\n");
 }
+
+void print_count_line(int nb_todos) {
+	int nbdigits = get_digits(nb_todos);
+	switch(nbdigits) {
+		case 1: printf("|  #  %d todos %35s\n", nb_todos, HASH); break;
+		case 2: printf("|  #  %d todos %34s\n", nb_todos, HASH); break;
+		case 3: printf("|  #  %d todos %33s\n", nb_todos, HASH); break;	
+		case 4: printf("|  #  %d todos %32s\n", nb_todos, HASH); break;
+		case 5: printf("|  #  %d todos %31s\n", nb_todos, HASH); break;
+		default: printf("|  #  %d todos %30s\n", nb_todos, HASH); break;
+	}
+	printf("|  # ");
+	for(int i = 0; i < 42; i++) {
+		printf("=");
+	}
+	printf(" #\n");
+
+}
+
+
+
+
+
+
+
+

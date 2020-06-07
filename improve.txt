@@ -1,3 +1,0 @@
--> When adding a new subject, possibility to add a todo to it.
--> Adding importance to a todo (and file important.txt)
--> When displaying the todo, show the number of todos inside it.

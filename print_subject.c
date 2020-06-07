@@ -7,7 +7,7 @@
 void proc_prnt(char* username) {
 
 	if(isFileEmpty(FILE_LIST) == TRUE) {
-		printf("| Bot> You have not subject to print.\n");
+		printf("| Bot> You have no subject to print.\n");
 		return;
 	}
 

@@ -41,16 +41,49 @@ void print_subjects(void) {
 	FILE* file = fopen(FILE_LIST, "r");
 	char line[MAX_STR_SIZE];
 	print_line();
-	printf("|   ######### SUBJECTS #########\n");
+	printf("|   ############## SUBJECTS ##############\n");
 	do{
 		fgets(line, MAX_STR_SIZE, file);
 		if(feof(file)) {break;}
 		correct(line);
-		printf("|   #    %-22s#\n", line);
+		int nbtodos = get_nb_todos(line);
+		int nb_digits = get_digits(nbtodos);
+		
+		switch(nb_digits) {
+			case 1: printf("|   #    %-22s (%d)%7s\n", line, nbtodos, HASH); break;
+			case 2: printf("|   #    %-22s (%d)%6s\n", line, nbtodos, HASH); break;
+			case 3: printf("|   #    %-22s (%d)%5s\n", line, nbtodos, HASH); break;
+			case 4: printf("|   #    %-22s (%d)%4s\n", line, nbtodos, HASH); break;
+			case 5: printf("|   #    %-22s (%d)%3s\n", line, nbtodos, HASH); break;
+			default: printf("|   #    %-22s (%d)%2s\n", line, nbtodos, HASH); break;
+		}
+
 	} while(!feof(file));
-	printf("|   ############################\n");
+	printf("|   ######################################\n");
 	print_line();
 	fclose(file);
+}
+
+int get_nb_todos(const char subject[]) {
+	if(isFileEmpty(subject)) {return 0;}
+	FILE* f_subj = fopen(subject, "r");
+	int lineCount = 0;
+	char line[MAX_STR_SIZE];
+	while(!feof(f_subj)) {
+		fgets(line, MAX_STR_SIZE, f_subj);
+		if(feof(f_subj)) {return lineCount;}
+		lineCount++;
+	}
+	return lineCount;
+}
+
+int get_digits(int nb) {
+	if(nb < 10) {return 1;}
+	else if(nb < 100) {return 2;}
+	else if(nb < 1000) {return 3;}
+	else if(nb < 10000) {return 4;}
+	else if(nb < 100000) {return 5;}
+	else {return 6;}
 }
 
 char* get_username(void) {
@@ -99,7 +132,7 @@ int confirm(const char username[]) {
 
 
 void print_nonempty_subjects(void) {
-	printf("|   ######### SUBJECTS #########\n");
+	printf("|   ############## SUBJECTS ##############\n");
 	FILE* file = fopen(FILE_LIST, "r");
     char line[MAX_FILENAME_SIZE];
     do{
@@ -107,12 +140,23 @@ void print_nonempty_subjects(void) {
         if(feof(file)) {break;}
         correct(line);
 		if(isFileEmpty(line) == FALSE) {
-        	printf("|   #    %-22s#\n", line);
+			int nbtodos = get_nb_todos(line);
+        	int nb_digits = get_digits(nbtodos);
+
+        	switch(nb_digits) {
+            	case 1: printf("|   #    %-22s (%d)%7s\n", line, nbtodos, HASH); break;
+            	case 2: printf("|   #    %-22s (%d)%6s\n", line, nbtodos, HASH); break;
+            	case 3: printf("|   #    %-22s (%d)%5s\n", line, nbtodos, HASH); break;
+            	case 4: printf("|   #    %-22s (%d)%4s\n", line, nbtodos, HASH); break;
+            	case 5: printf("|   #    %-22s (%d)%3s\n", line, nbtodos, HASH); break;
+            	default: printf("|   #    %-22s (%d)%2s\n", line, nbtodos, HASH); break;
+        	}
+	
 		}
     } while(!feof(file));
 	
 	fclose(file);
-	printf("|   ############################\n");
+	printf("|   ######################################\n");
 }
 
 int allEmpty(void) {
