@@ -2,6 +2,7 @@
 #include "command.h"
 #include "util.h"
 #include <string.h>
+#include "initialize.h"
 
 #define NAME_INIT "init"
 #define NAME_DISP "disp"
@@ -30,6 +31,7 @@ int isValid(command c) {
 int print_commands(void) {
 	FILE* cmds = fopen(FILE_CMD, "r");
 	if(cmds == NULL) {
+		generate_commands();
 		return FAILURE;
 	}
 	char line[CMD_LINE_SIZE];

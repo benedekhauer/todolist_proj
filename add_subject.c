@@ -4,6 +4,8 @@
 #include "add_subject.h"
 #include "add_subject_helpers.h"
 #include "remove_subject_helpers.h"
+#include "initialize.h"
+
 int proc_adds(char* username) {
 	char filename[MAX_STR_SIZE];
 	
@@ -40,7 +42,9 @@ int proc_adds(char* username) {
 		return FALSE;
 	}
 
+	generate_all_files();
 	FILE* all = fopen(FILE_LIST, "a");
+	
 	fprintf(all, "%s", filename);
 	fprintf(all, "\n");
 	fclose(all);

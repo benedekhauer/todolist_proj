@@ -3,6 +3,7 @@
 #include "reset.h"
 #include "util.h"
 #include "remove_subject_helpers.h"
+#include "initialize.h"
 
 int proc_init(char* username) {
 
@@ -22,6 +23,7 @@ int proc_init(char* username) {
         return FALSE;
     }
 
+	generate_all_files();
 	FILE* all_files = fopen(FILE_LIST, "r");
 	char line[MAX_STR_SIZE];
 	char dummy[MAX_STR_SIZE];
@@ -33,6 +35,7 @@ int proc_init(char* username) {
         delete_file(dummy);
     }
 	fclose(all_files);
+	generate_nonempties();
 	FILE* f_ne = fopen(FILE_NE, "w");
 	fprintf(f_ne, "%s", EMPTY_STRING);
 	fclose(f_ne);

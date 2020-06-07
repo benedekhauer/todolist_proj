@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include "util.h"
 #include <string.h>
+#include "initialize.h"
 
 void delete_file(char filename[]) {
 	remove(filename);
+	generate_all_files();
 	FILE* all_files = fopen(FILE_LIST, "r");
 	FILE* swap = fopen(FILE_SWAP, "w");
 	char line[MAX_STR_SIZE];
@@ -47,9 +49,7 @@ void remove_from_gitignore(char filename[]) {
     fclose(swap);
     remove(".gitignore");
     rename(FILE_SWAP, ".gitignore");
-    FILE* newSwap = fopen(FILE_SWAP, "w");
-    fprintf(newSwap, "%s", EMPTY_STRING);
-    fclose(newSwap);
-    return;
+    remove(FILE_SWAP);
+	return;
 
 }

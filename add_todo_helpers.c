@@ -45,7 +45,7 @@ int generate_id(void) {
 	if(allEmpty()) {
 		return FIRST_ID;
 	}
-	int nextUsableId = 2;
+	int nextUsableId = FIRST_ID;
 	while(exists(nextUsableId) == TRUE) {
 		nextUsableId++;
 	}

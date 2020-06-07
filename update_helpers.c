@@ -4,6 +4,7 @@
 #include "util.h"
 
 void update_nonempties(void) {
+	generate_all_files();
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		return;
 	}	

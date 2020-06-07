@@ -8,12 +8,9 @@
 |    # will have to create all your subjects.    #
 |    #                                           #
 |    # WARNING: For the program to function,     #
-|    # do not delete any of the following files: #
+|    # do not delete any files or you will need  #
+|    # to reset your lists and lose data.        #
 |    # ----------------------------------------- #
-|    # main | all_files.txt | commands.txt |     #
-|    # next_id.txt | nonempties.txt | swap.txt | #
-|    # username.txt | info.txt                   #
-|    #                                           #
 |    # ENJOY!                   - Benedek Hauer  #
 |    #############################################
 |

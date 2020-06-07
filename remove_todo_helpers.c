@@ -148,9 +148,7 @@ void remove_todo(char subject[], int id) {
 
 	remove(subject);
 	rename(FILE_SWAP, subject);
-	FILE* newSwap = fopen(FILE_SWAP, "w");
-	fprintf(newSwap, "%s", EMPTY_STRING);
-	fclose(newSwap);
+	remove(FILE_SWAP);
 }
 
 

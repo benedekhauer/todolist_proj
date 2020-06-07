@@ -2,6 +2,7 @@
 #include <string.h>
 #include "util.h"
 #include "add_subject_helpers.h"
+#include "initialize.h"
 
 void add_to_gitignore(char filename[]) {
 	FILE* gitignore = fopen(".gitignore", "a");
@@ -31,6 +32,8 @@ int isAccepted(char str[]) {
 }
 
 int file_exists_already(char filename[]) {
+
+	generate_all_files();	
 	FILE* file = fopen(FILE_LIST, "r");
 	char scannedLine[MAX_FILENAME_SIZE];
 	while(!feof(file)) {

@@ -1,9 +1,10 @@
 #include "clear_subject_helpers.h"
 #include <stdio.h>
 #include "util.h"
-
+#include "initialize.h"
 
 void clear_all(void) {
+	generate_all_files();
 	FILE* all_files = fopen(FILE_LIST, "r");
 	FILE* to_clear;
     char line[MAX_FILENAME_SIZE];
