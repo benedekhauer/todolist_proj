@@ -50,7 +50,9 @@ void print_subject(const char subject[]) {
 void print_count_line(int nb_todos) {
 	int nbdigits = get_digits(nb_todos);
 	switch(nbdigits) {
-		case 1: printf("|  #  %d todos %35s\n", nb_todos, HASH); break;
+		case 1: 
+			if(nb_todos == 1) {printf("|  #  %d todo %36s\n", nb_todos, HASH); break;}
+			else{printf("|  #  %d todos %35s\n", nb_todos, HASH);break;}		
 		case 2: printf("|  #  %d todos %34s\n", nb_todos, HASH); break;
 		case 3: printf("|  #  %d todos %33s\n", nb_todos, HASH); break;	
 		case 4: printf("|  #  %d todos %32s\n", nb_todos, HASH); break;

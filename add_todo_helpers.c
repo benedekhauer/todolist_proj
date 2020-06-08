@@ -12,8 +12,6 @@ int add_todo(const char subject[], const char username[], int todoId) {
 
 	print_subject(subject);		
 
-	FILE* f_subject = fopen(subject, "a");
-	
 	char todo[MAX_STR_SIZE];
 	printf("| Bot: What do you want your todo to be? (< %d chars)\n", MAX_TODO_SIZE);
 	do {
@@ -26,11 +24,9 @@ int add_todo(const char subject[], const char username[], int todoId) {
 
 	correct(noNewLine);
 
-	if(strcmp(noNewLine, EXIT_CODE) == 0) {
-		fclose(f_subject);
-		return FALSE;
-	}
-		
+	M_RET_IF_EXIT(noNewLine, FALSE);
+
+	FILE* f_subject = fopen(subject, "a");	
 	fprintf(f_subject, "%d:%s", todoId, todo);
 	fclose(f_subject);
 	printf("| Bot> Todo added successfully.\n");
@@ -54,21 +50,28 @@ int generate_id(void) {
 
 
 int exists(int id) {
-	FILE* f_nonempties = fopen(FILE_NE, "r");
+	FILE* all_files = fopen(FILE_LIST, "r");
 	char subject[MAX_STR_SIZE];
-	while(!feof(f_nonempties)) {
-		fgets(subject, MAX_STR_SIZE, f_nonempties);
-		if(feof(f_nonempties)) {break;}
+	while(!feof(all_files)) {
+		fgets(subject, MAX_STR_SIZE, all_files);
+		if(feof(all_files)) {break;}
 		correct(subject);
-		FILE* f_subj = fopen(subject, "r");
-		int readId;
-		char not_needed_rest[MAX_STR_SIZE];
-		while(!feof(f_subj)) {
-			fscanf(f_subj, "%d", &readId);
-			if(feof(f_subj)) {break;}
-			fgets(not_needed_rest, MAX_STR_SIZE, f_subj);
-			if(readId == id) {return TRUE;}
+		if(isFileEmpty(subject) == FALSE) {
+			FILE* f_subj = fopen(subject, "r");
+			int readId;
+			char not_needed_rest[MAX_STR_SIZE];
+			while(!feof(f_subj)) {
+				fscanf(f_subj, "%d", &readId);
+				if(feof(f_subj)) {break;}
+				fgets(not_needed_rest, MAX_STR_SIZE, f_subj);
+				if(readId == id) {
+					fclose(all_files);
+					fclose(f_subj);
+					return TRUE;}
+			}
+			fclose(f_subj);
 		}
 	}
+	fclose(all_files);
 	return FALSE;
 }

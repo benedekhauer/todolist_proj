@@ -28,21 +28,25 @@ int isValid(command c) {
 	return FALSE;
 }
 
-int print_commands(void) {
-	FILE* cmds = fopen(FILE_CMD, "r");
-	if(cmds == NULL) {
-		generate_commands();
-		return FAILURE;
-	}
-	char line[CMD_LINE_SIZE];
-	while(!feof(cmds)) {
-		fgets(line, CMD_LINE_SIZE, cmds);
-		if(!feof(cmds)) {
-			printf("%s", line);
-		}
-	}
-	fclose(cmds);
-	return SUCCESS;
+void print_commands(void) {
+	printf("|\n");
+    printf("|   ######## COMMANDS #########\n");
+    printf("|   #  Reset :           init #\n");
+    printf("|   #  Show subjects:    disp #\n");
+    printf("|   #  Add subject :     adds #\n");
+    printf("|   #  Add todo :        addt #\n");
+    printf("|   #  Delete subject:   dels #\n");
+    printf("|   #  Delete todo:      delt #\n");
+    printf("|   #  Move todo to top: mvtp #\n");
+    printf("|   #  Random todo:      rndm #\n");
+    printf("|   #  Clear subject:    clrs #\n");
+    printf("|   #  Print subject:    prnt #\n");
+    printf("|   #  Change username:  usrn #\n");
+    printf("|   #  Useful info:      info #\n");
+    printf("|   #  Show commands:    help #\n");
+    printf("|   #  Exit:             exit #\n");
+    printf("|   ###########################\n");
+    printf("|\n");
 }
 
 void print_command(command cmd) {

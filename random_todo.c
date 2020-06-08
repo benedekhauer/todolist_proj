@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 void proc_rndm(void) {
 	srand(time(0));
@@ -18,11 +19,26 @@ void proc_rndm(void) {
 
 	printf("| Bot> Info: The randomizer selects the top todo of a random subject.\n");
 
-	int nbNonEmpty = line_count(FILE_NE);
-	
+	FILE* nonempties = fopen(FILE_NE, "w");
+	FILE* all_files = fopen(FILE_LIST, "r");
+	char line[MAX_STR_SIZE];
+	char corrected[MAX_STR_SIZE];
+	int nbNonEmpty = 0;
+	while(!feof(all_files)) {
+		fgets(line, MAX_STR_SIZE, all_files);
+		if(feof(all_files)) {break;}
+		strncpy(corrected, line, MAX_STR_SIZE);
+		correct(corrected);
+		if(isFileEmpty(corrected) == FALSE) {
+			fprintf(nonempties, "%s", line);
+			nbNonEmpty += 1;
+		}
+	}
+
 
 	int randomLine = rand() % nbNonEmpty;
-
+	fclose(nonempties);
+	fclose(all_files);
 
 	FILE* f_ne = fopen(FILE_NE, "r");
 	FILE* f_rand_subj;
@@ -42,6 +58,7 @@ void proc_rndm(void) {
 		}
 	}
 	fclose(f_ne);
+	remove(FILE_NE);
 	fclose(f_rand_subj);
 	printf("| Bot> Random todo:\n|       Subject: %s\n|       Todo: %s", randomSubj, randomTodo);
 }

@@ -10,7 +10,6 @@
 #include "reset.h"
 #include "remove_todo.h"
 #include "random_todo.h"
-#include "update.h"
 #include "display_subjects.h"
 #include "change_username.h"
 #include "information.h"
@@ -95,9 +94,6 @@ int main(void) {
 				break;
 			default:
 				break;
-		}
-		if(change == TRUE) {
-			update();
 		}
 
 		if(username_update == TRUE) {

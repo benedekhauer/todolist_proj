@@ -18,10 +18,8 @@
 #define DEFAULT_USERNAME "You"
 #define FILE_LIST "all_files.txt"
 #define FILE_NE "nonempties.txt"
-#define FILE_CMD "commands.txt"
 #define FILE_USERNAME "username.txt"
 #define FILE_SWAP "swap.txt"
-#define FILE_INFO "info.txt"
 #define MAKEFILE "Makefile"
 
 
@@ -33,7 +31,17 @@
 
 #define EMPTY_STRING ""
 #define HASH "#"
+
 #define M_FREE(ptr) {if((ptr)!=NULL){free(ptr);ptr=NULL;}}
+
+#define M_RET_IF_EXIT(str) {if((strcmp(str, EXIT_CODE)) == 0) {return;}}
+#define M_RET_IF_TRUE(val) {if(val == TRUE) {return;}}
+#define M_REF_IF_FALSE(val) {if(val == FALSE) {return;}}
+#define M_RET_IF_NULL(p) {if((p) == NULL) {return;}}
+
+#define M_PRINT_HRST_RET(ptr) \
+	{if(ptr == NULL) {printf("Files missing. Run 'hrst' to reset everything.\n");return;}}
+
 
 void generate_files(void);
 

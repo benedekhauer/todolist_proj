@@ -46,9 +46,12 @@ int get_nb_todos(const char subject[]) {
 	char line[MAX_STR_SIZE];
 	while(!feof(f_subj)) {
 		fgets(line, MAX_STR_SIZE, f_subj);
-		if(feof(f_subj)) {return lineCount;}
+		if(feof(f_subj)) {
+			fclose(f_subj);
+			return lineCount;}
 		lineCount++;
 	}
+	fclose(f_subj);
 	return lineCount;
 }
 

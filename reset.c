@@ -35,7 +35,6 @@ int proc_init(char* username) {
         delete_file(dummy);
     }
 	fclose(all_files);
-	generate_nonempties();
 	FILE* f_ne = fopen(FILE_NE, "w");
 	fprintf(f_ne, "%s", EMPTY_STRING);
 	fclose(f_ne);

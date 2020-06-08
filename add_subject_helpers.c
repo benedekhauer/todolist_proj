@@ -4,11 +4,44 @@
 #include "add_subject_helpers.h"
 #include "initialize.h"
 
-void add_to_gitignore(char filename[]) {
-	FILE* gitignore = fopen(".gitignore", "a");
-	if(gitignore == NULL) {
-		return;
+int violation(char filename[]) {
+	if(strcmp(filename, ALL_CODE) == 0) {
+        printf("| Bot> ### Failed. The name of a subject cannot be \'%s\'\n", ALL_CODE);
+        return TRUE;
+    }
+
+	if(strcmp(filename, EXIT_CODE) == 0) {
+		printf("| Bot> ### Failed. The name of a subject cannot be \'%s\'\n", EXIT_CODE);
+		return TRUE;
 	}
+
+	if(strcmp(filename, HASH) == 0) {
+		printf("| Bot> ### Failed. The name of a subject cannot be \'%s\'\n", HASH);
+		return TRUE;
+
+    if(strcmp(filename, EXEC_FILE) == 0) {
+        printf("| Bot> ### Failed. The name of your subject cannot be \'%s\'\n", EXEC_FILE);
+        return TRUE;
+    }
+
+    if(strcmp(filename, MAKEFILE) == 0) {
+        printf("| Bot> ### Failed. The name of your subject cannot be \'%s\'\n", MAKEFILE);
+        return TRUE;
+    }
+
+    if(file_exists(filename) == TRUE) {
+        printf("| Bot> ### Creation of %s failed (subject already exists).\n", filename);
+        return TRUE;
+    }
+	return FALSE;
+}
+
+
+void add_to_gitignore(char filename[]) {
+	
+	FILE* gitignore;
+	RET_IF_NULL(gitignore = fopen(".gitignore", "a"));
+
 	fprintf(gitignore, "%s\n", filename);
 	fclose(gitignore);
 }

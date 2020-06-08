@@ -18,32 +18,12 @@ int proc_adds(char* username) {
 		
 	correct(filename);
 	
-	if(strcmp(filename, EXIT_CODE) == 0) {
-		return FALSE;
-	}
+	M_RET_IF_EXIT(filename);
+	M_RET_IF_TRUE(violation(filename));
 	
-	if(strcmp(filename, ALL_CODE) == 0) {
-		printf("| Bot> ### Failed. The name of a subject cannot be \'%s\'\n", ALL_CODE);
-		return FALSE;
-	}
 	
-	if(strcmp(filename, EXEC_FILE) == 0) {
-		printf("| Bot> ### Failed. The name of your subject cannot be \'%s\'\n", EXEC_FILE);
-		return FALSE;
-	}
-
-	if(strcmp(filename, MAKEFILE) == 0) {
-		printf("| Bot> ### Failed. The name of your subject cannot be \'%s\'\n", MAKEFILE);
-		return FALSE;
-	}
-
-	if(file_exists(filename) == TRUE) {
-		printf("| Bot> ### Creation of %s failed (subject already exists).\n", filename);
-		return FALSE;
-	}
-
-	generate_all_files();
-	FILE* all = fopen(FILE_LIST, "a");
+	FILE* all = fopen(FILE_LIST, "a");	
+	M_PRINT_HRST_RET(all);
 	
 	fprintf(all, "%s", filename);
 	fprintf(all, "\n");
@@ -54,5 +34,5 @@ int proc_adds(char* username) {
 	add_to_gitignore(filename);
 	printf("| Bot> Creation of \'%s\' successful!\n", filename);
 	fclose(new);
-	return TRUE;
+	return;
 }

@@ -23,7 +23,7 @@ typedef enum {
 int isValid(command c);
 
 // prints commands
-int print_commands(void);
+void print_commands(void);
 
 // prints command
 void print_command(command c);
