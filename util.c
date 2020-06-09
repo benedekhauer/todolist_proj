@@ -37,6 +37,13 @@ void print_subjects(void) {
 		fgets(line, MAX_STR_SIZE, file);
 		if(feof(file)) {break;}
 		correct(line);
+		if(missing(line) == TRUE) {
+			printf("|   #             --- ERROR ---          #\n");
+			printf("|   ######################################\n");
+			print_hrst_msg();
+			fclose(file);
+			return;
+		}
 		int nbtodos = get_nb_todos(line);
 		int nb_digits = get_digits(nbtodos);
 		
