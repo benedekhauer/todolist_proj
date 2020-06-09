@@ -14,6 +14,7 @@
 #include "change_username.h"
 #include "information.h"
 #include "move_todo.h"
+#include "initialize.h"
 
 int main(void) {
 	int username_update = FALSE;

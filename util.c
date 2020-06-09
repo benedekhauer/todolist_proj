@@ -1,5 +1,3 @@
-#pragma once
-
 #include <stdio.h>
 #include "util.h"
 #include <string.h>
@@ -17,7 +15,7 @@ int missing(const char filename[]) {
 }
 
 void print_hrst_msg(void) {
-	printf("| Bot> Files missing. Run 'hrst' to reset everything.\n");
+	printf("| Bot> ### Files missing. Run 'hrst' to reset everything.\n");
 }
 
 
@@ -57,7 +55,7 @@ void print_subjects(void) {
 }
 
 int get_nb_todos(const char subject[]) {
-	M_RET_IF_TRUE(missing(subject));
+	if(missing(subject) == TRUE) {return 0;}
 	if(isFileEmpty(subject)) {return 0;}
 	FILE* f_subj = fopen(subject, "r");
 	int lineCount = 0;
@@ -226,21 +224,3 @@ void print_subject_name(const char subject[], int withEndline) {
 	}
 }
 
-int line_count(char file[]) {
-	char line[MAX_STR_SIZE];
-	M_RET_IF_TRUE(missing(file));
-	FILE* f_toCount = fopen(file, "r");
-	if(f_toCount == NULL) {
-		printf("Some files are missing.\n");
-		return -1;
-	}	
-	int count = 0;
-	while(!feof(f_toCount)) {
-		fgets(line, MAX_STR_SIZE, f_toCount);
-		if(!feof(f_toCount)) {
-			count++;
-		}	
-	}
-	fclose(f_toCount);
-	return count;
-}

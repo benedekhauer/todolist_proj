@@ -4,6 +4,7 @@ todolist: todolist.o command.o add_subject.o add_subject_helpers.o remove_subjec
   remove_todo.o remove_todo_helpers.o random_todo.o initialize.o move_todo.o \
   display_subjects.o change_username.o information.o move_todo_helpers.o
 
+
 add_subject.o: add_subject.c util.h add_subject.h add_subject_helpers.h \
  remove_subject_helpers.h initialize.h
 add_subject_helpers.o: add_subject_helpers.c util.h add_subject_helpers.h \
@@ -41,5 +42,5 @@ reset.o: reset.c reset.h util.h remove_subject_helpers.h initialize.h
 todolist.o: todolist.c command.h util.h add_subject.h remove_subject.h \
  add_todo.h clear_subject.h print_subject.h reset.h remove_todo.h \
  random_todo.h display_subjects.h change_username.h information.h \
- move_todo.h
+ move_todo.h initialize.h
 util.o: util.c util.h initialize.h

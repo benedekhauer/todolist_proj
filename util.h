@@ -78,6 +78,3 @@ int file_exists(const char[]);
 
 void print_subject_name(const char[], int);
 
-int line_count(char[]);
-
-int file_exists_in_nonempties(char[]);

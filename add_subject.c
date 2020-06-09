@@ -24,6 +24,7 @@ void proc_adds(char* username) {
 	M_RET_IF_EXIT(filename);
 	M_RET_IF_TRUE(violation(filename));
 	
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	
 	FILE* all = fopen(FILE_LIST, "a");	
 	M_PRINT_HRST_RET(all);

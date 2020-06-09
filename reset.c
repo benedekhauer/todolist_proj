@@ -5,7 +5,7 @@
 #include "remove_subject_helpers.h"
 #include "initialize.h"
 
-int proc_init(char* username) {
+void proc_init(char* username) {
 
 	printf("| Bot> ** WARNING ** All subjects and todos will be deleted.\n");
 	printf("| Bot> Do you wish to continue?\n");
