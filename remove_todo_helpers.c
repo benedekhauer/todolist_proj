@@ -6,7 +6,7 @@
 #include "print_subject_helpers.h"
 
 
-int delete_todo(char subject[], char* username) {
+void delete_todo(char subject[], char* username) {
 
 	print_full_subject(subject);
 	int del_id;
@@ -15,6 +15,8 @@ int delete_todo(char subject[], char* username) {
 	char line[MAX_STR_SIZE];
 	int accepted = 0;
 
+	M_RET_IF_TRUE(missing(subject));
+	M_RET_IF_TRUE(missing(FILE_LIST));
 
 	do {
 		printf("| %s> (%s to exit): ", username, EXIT_CODE);
@@ -24,14 +26,17 @@ int delete_todo(char subject[], char* username) {
 			accepted = 1;
 		}
 		else if(isX(line) == TRUE) {
-			return FALSE;
+			return;
 		}
 	} while(accepted == 0);
 	print_line();
 
+	M_RET_IF_TRUE(missing(FILE_LIST));
+	M_RET_IF_TRUE(missing(subject));
+
 	if(todoIdExists(subject, del_id) == FALSE) {
 		printf("| Bot> The number you entered does not match any todo. Aborted.\n");
-		return FALSE;
+		return;
 	}
 	
 	remove_todo(subject, del_id);
@@ -39,13 +44,15 @@ int delete_todo(char subject[], char* username) {
 	
 	if(isFileEmpty(subject) == TRUE) {
 		printf("| Bot> %s is now empty.\n", subject);
-		return FALSE;
+		return;
 	}	
 
 	printf("| Bot> Do you want to remove another todo from %s?\n", subject);
-
-
-	return confirm(username) ? delete_todo(subject, username) : TRUE;
+	M_RET_IF_TRUE(missing(FILE_LIST));
+	M_RET_IF_TRUE(missing(subject));
+	if(confirm(username) == TRUE) {
+		delete_todo(subject,username);
+	}
  
 }
 

@@ -1,1 +1,1 @@
-int proc_delt(char*);
+void proc_delt(char*);

@@ -1,4 +1,4 @@
-int delete_todo(char[], char*);
+void delete_todo(char[], char*);
 
 void print_full_subject(char[]);
 

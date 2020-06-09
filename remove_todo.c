@@ -4,16 +4,17 @@
 #include "remove_todo.h"
 #include "remove_todo_helpers.h"
 
-int proc_delt(char* username) {
+void proc_delt(char* username) {
 
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> Your subject list is empty.\n");
-		return FALSE;
+		return;
 	}
 	
 	if(allEmpty() == TRUE) {
 		printf("| Bot> All your subjects are empty.\n");
-		return FALSE;
+		return;
 	}
 
 	char subject[MAX_STR_SIZE];
@@ -26,19 +27,17 @@ int proc_delt(char* username) {
 	fgets(subject, MAX_STR_SIZE, stdin);
 	correct(subject);
 
-	if(strcmp(subject, EXIT_CODE) == 0) {
-		printf("| Bot> No changes.\n");
-		return FALSE;
-	}
+
+	M_RET_IF_EXIT(subject);
 
 	if(file_exists(subject) == FALSE) {
 		printf("| Bot> The subject you want to delete from does not exist.\n");
-		return FALSE;
+		return;
 	}
 	if(isFileEmpty(subject) ==  TRUE) {
 		printf("| Bot> The file you want to delete from is empty.\n");
-		return FALSE;
+		return;
 	}
-	return delete_todo(subject, username);
+	delete_todo(subject, username);
 	
 }
