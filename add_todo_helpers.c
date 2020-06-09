@@ -36,7 +36,11 @@ void add_todo(const char subject[], const char username[], int todoId) {
 	printf("| Bot> Todo added successfully.\n");
 	printf("| Bot> Do you want to add another todo to %s?\n", subject);
 
-	M_RET_IF_TRUE(missing(FILE_LIST));
+
+	if(missing(FILE_LIST) == TRUE) {
+		free(f_subject);
+		return;
+	}
 	if(confirm(username) == TRUE) {
 		add_todo(subject, username, generate_id());
 	}
@@ -47,14 +51,16 @@ void add_todo(const char subject[], const char username[], int todoId) {
 int generate_id(void) {
 	FILE* all_files = fopen(FILE_LIST, "r");
 	if(all_files == NULL) {generate_all_files();}
-	if(isFileEmpty(FILE_LIST) == TRUE) {return FIRST_ID;}
+	if(isFileEmpty(FILE_LIST) == TRUE) {fclose(all_files);return FIRST_ID;}
 	if(allEmpty()) {
+		fclose(all_files);
 		return FIRST_ID;
 	}
 	int nextUsableId = FIRST_ID;
 	while(id_exists(nextUsableId) == TRUE) {
 		nextUsableId++;
 	}
+	fclose(all_files);
 	return nextUsableId;
 }
 
