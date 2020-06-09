@@ -163,6 +163,7 @@ int allEmpty(void) {
 	while(!feof(all_files)) {
 		fgets(line, MAX_FILENAME_SIZE, all_files);
 		correct(line);
+		if(missing(line) == TRUE) {return TRUE;}
 		if(isFileEmpty(line) == FALSE) {
 			fclose(all_files);
 			return FALSE;
