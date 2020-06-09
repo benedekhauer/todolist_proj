@@ -1,3 +1,3 @@
-int add_todo(const char[], const char[], int);
+void add_todo(const char[], const char[], int);
 int generate_id(void);
-int exists(int);
+int id_exists(int);

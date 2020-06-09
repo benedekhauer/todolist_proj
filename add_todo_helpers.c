@@ -4,15 +4,16 @@
 #include <string.h>
 #include "print_subject_helpers.h"
 
-int add_todo(const char subject[], const char username[], int todoId) {
+void add_todo(const char subject[], const char username[], int todoId) {
 	if(todoId > MAX_TODO_COUNT) {
 		printf("| Bot> You cannot add any more todos\n");
-		return TRUE;
+		return;
 	}
 
 	print_subject(subject);		
 
 	char todo[MAX_STR_SIZE];
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	printf("| Bot: What do you want your todo to be? (< %d chars)\n", MAX_TODO_SIZE);
 	do {
 		printf("| %s> (%s to abort): ", username, EXIT_CODE);
@@ -24,7 +25,9 @@ int add_todo(const char subject[], const char username[], int todoId) {
 
 	correct(noNewLine);
 
-	M_RET_IF_EXIT(noNewLine, FALSE);
+	M_RET_IF_EXIT(noNewLine);
+
+	M_RET_IF_TRUE(missing(subject));
 
 	FILE* f_subject = fopen(subject, "a");	
 	fprintf(f_subject, "%d:%s", todoId, todo);
@@ -32,7 +35,10 @@ int add_todo(const char subject[], const char username[], int todoId) {
 	printf("| Bot> Todo added successfully.\n");
 	printf("| Bot> Do you want to add another todo to %s?\n", subject);
 
-	return confirm(username) ? add_todo(subject, username, generate_id()) : TRUE;
+	M_RET_IF_TRUE(missing(FILE_LIST));
+	if(confirm(username) == TRUE) {
+		add_todo(subject, username, generate_id());
+	}
 	
 }
 
@@ -42,14 +48,14 @@ int generate_id(void) {
 		return FIRST_ID;
 	}
 	int nextUsableId = FIRST_ID;
-	while(exists(nextUsableId) == TRUE) {
+	while(id_exists(nextUsableId) == TRUE) {
 		nextUsableId++;
 	}
 	return nextUsableId;
 }
 
 
-int exists(int id) {
+int id_exists(int id) {
 	FILE* all_files = fopen(FILE_LIST, "r");
 	char subject[MAX_STR_SIZE];
 	while(!feof(all_files)) {

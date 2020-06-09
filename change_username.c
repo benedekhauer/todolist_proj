@@ -2,6 +2,7 @@
 #include "change_username.h"
 #include "util.h"
 #include <string.h>
+#include "initialize.h"
 
 int proc_usrn(char* username) {
 
@@ -29,6 +30,7 @@ int proc_usrn(char* username) {
 		return FALSE;
 	}
 
+	generate_username();	
 	FILE* file_usr = fopen(FILE_USERNAME, "w");
 	fprintf(file_usr, "%s\n", newUsername);
 	fclose(file_usr);

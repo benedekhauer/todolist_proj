@@ -5,7 +5,7 @@
 #include "print_subject_helpers.h"
 
 void proc_prnt(char* username) {
-
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> You have no subject to print.\n");
 		return;
@@ -24,11 +24,9 @@ void proc_prnt(char* username) {
 	printf("| %s> (Subject, %s to exit): ", username, EXIT_CODE);
 	fgets(chosen_file, MAX_STR_SIZE, stdin);
 	correct(chosen_file);
-	if(strcmp(chosen_file, EXIT_CODE) == 0) {
-		return;
-	}
+	M_RET_IF_EXIT(chosen_file);
 	print_line();
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	print_subject(chosen_file);
-	return;
 
 }

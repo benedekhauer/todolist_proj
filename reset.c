@@ -18,12 +18,10 @@ int proc_init(char* username) {
         yn = parse_answer(s_answer);
     }
 
-    if(yn == 'N' || yn == 'n') {
-        printf("| Bot> No changes.\n");
-        return FALSE;
-    }
+	M_RET_IF_TRUE(yn == 'N' || yn == 'n');
 
 	generate_all_files();
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	FILE* all_files = fopen(FILE_LIST, "r");
 	char line[MAX_STR_SIZE];
 	char dummy[MAX_STR_SIZE];
@@ -39,7 +37,6 @@ int proc_init(char* username) {
 	fprintf(f_ne, "%s", EMPTY_STRING);
 	fclose(f_ne);
 	printf("| Bot> Reset complete.\n");
-	return TRUE;
 }
 
 

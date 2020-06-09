@@ -6,10 +6,13 @@
 #include "remove_subject_helpers.h"
 #include "initialize.h"
 
-int proc_adds(char* username) {
+void proc_adds(char* username) {
 	char filename[MAX_STR_SIZE];
 	
+	M_RET_IF_TRUE(missing(FILE_LIST));
+
 	print_subjects();
+	
 	do {
 		printf("| Bot> Enter subject (max %d chars, only letters and numbers).\n", MAX_FILENAME_SIZE-1);
 		printf("| %s> (%s to abort): ", username, EXIT_CODE);

@@ -1,6 +1,7 @@
 /*
  * @file file_helpers.h
  */
+int violation(char[]);
 
 void add_to_gitignore(char[]);
 
@@ -9,7 +10,4 @@ int isAscii(char);
 
 // checks if name entered is acceptable
 int isAccepted(char[]);
-
-//checks if a file already exists
-int file_exists_already(char[]);
 

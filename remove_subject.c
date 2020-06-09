@@ -4,22 +4,20 @@
 #include "remove_subject_helpers.h"
 #include <string.h>
 
-int proc_dels(char* username) {
-	
+void proc_dels(char* username) {
+
+	M_RET_IF_TRUE(missing(FILE_LIST));	
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> There is nothing to delete.\n");
-		return FALSE;
+		return;
 	}
 
 	
 	printf("| Bot> *Warning*: If you delete a subject,\n");
 	printf("|                 all the todos inside are going to be lost.\n");
 	printf("| Bot> Do you wish to continue?\n"); 
-	
-	if(confirm(username) == FALSE) {
-		printf("| Bot> No changes.\n");
-		return FALSE;
-	}
+
+	M_RET_IF_FALSE(confirm(username));	
 		
 	print_subjects();
 	char chosen_file[MAX_STR_SIZE];
@@ -27,21 +25,16 @@ int proc_dels(char* username) {
 	printf("| %s> (%s to abort): ", username, EXIT_CODE);
 	fgets(chosen_file, MAX_STR_SIZE, stdin);
 	correct(chosen_file);
-	if(strcmp(chosen_file, EXIT_CODE) == 0) {
-		printf("| Bot> No changes. Aborted.\n");
-		return FALSE;
-	}
 
+	M_RET_IF_EXIT(chosen_file);
 
 	if(file_exists(chosen_file) == TRUE) {
+		M_RET_IF_TRUE(missing(chosen_file));
 		delete_file(chosen_file);
 		printf("| Bot> Deletion successful of \'%s\'\n", chosen_file);
-		return TRUE;
 	}
 	else {
 		printf("| Bot> The subject you typed in does not exist.\n");
-		printf("| Bot> Deletion failed.\n");
-		return FALSE;
 	}
 }
 

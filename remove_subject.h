@@ -1,1 +1,1 @@
-int proc_dels(char*);
+void proc_dels(char*);

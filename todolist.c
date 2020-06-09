@@ -33,12 +33,11 @@ int main(void) {
 
 	generate_files();
 		
-	int change = FALSE;
 	print_line();
 	while(cmd != quit) {
 		switch(cmd) {
 			case init:
-				change = proc_init(username);
+				proc_init(username);
 				print_line();
 				break;
 			case disp:
@@ -50,15 +49,15 @@ int main(void) {
 				print_line();
 				break;
 			case addt:
-				change = proc_addt(username);
+				proc_addt(username);
 				print_line();
 				break;
 			case dels:
-				change = proc_dels(username);
+				proc_dels(username);
 				print_line();
 				break;
 			case delt:
-				change = proc_delt(username);
+				proc_delt(username);
 				print_line();
 				break;
 			case mvtp:
@@ -70,7 +69,7 @@ int main(void) {
 				print_line();
 				break;
 			case clrs:
-				change = proc_clrs(username);
+				proc_clrs(username);
 				print_line();
 				break;
 			case prnt:
@@ -110,6 +109,11 @@ int main(void) {
             cmd = parse_command(s_command);
         } while(cmd == none);
 		print_line();
+		if(missing(FILE_LIST) == TRUE) {
+			M_FREE(username);
+    		printf("|------------------------- END OF TODOLIST -------------------------\n");
+    		return 0;
+		}
 
 	}
 	M_FREE(username);

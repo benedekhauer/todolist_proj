@@ -6,6 +6,7 @@
 #include <string.h>
 
 void proc_rndm(void) {
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	srand(time(0));
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> There are no subjects.\n");
@@ -50,6 +51,7 @@ void proc_rndm(void) {
 		fgets(randomSubj, MAX_STR_SIZE, f_ne);
 		if(i ==	randomLine) {
 			correct(randomSubj);
+			M_RET_IF_TRUE(missing(randomSubj));
 			f_rand_subj = fopen(randomSubj, "r");
 			fscanf(f_rand_subj, "%d", &id);
 			fscanf(f_rand_subj, "%c", &dummy);	

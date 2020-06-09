@@ -18,7 +18,7 @@ int violation(char filename[]) {
 	if(strcmp(filename, HASH) == 0) {
 		printf("| Bot> ### Failed. The name of a subject cannot be \'%s\'\n", HASH);
 		return TRUE;
-
+	}
     if(strcmp(filename, EXEC_FILE) == 0) {
         printf("| Bot> ### Failed. The name of your subject cannot be \'%s\'\n", EXEC_FILE);
         return TRUE;
@@ -40,7 +40,7 @@ int violation(char filename[]) {
 void add_to_gitignore(char filename[]) {
 	
 	FILE* gitignore;
-	RET_IF_NULL(gitignore = fopen(".gitignore", "a"));
+	M_RET_IF_NULL(gitignore = fopen(".gitignore", "a"));
 
 	fprintf(gitignore, "%s\n", filename);
 	fclose(gitignore);
@@ -60,31 +60,6 @@ int isAccepted(char str[]) {
 	for(int i = 0; i < MAX_FILENAME_SIZE && str[i] != '\0'; i++) {
 		if((isAscii(str[i])) == FALSE) {return FALSE;}
 	}
-	//str[MAX_FILENAME_SIZE] = '\0';
 	return TRUE;
-}
-
-int file_exists_already(char filename[]) {
-
-	generate_all_files();	
-	FILE* file = fopen(FILE_LIST, "r");
-	char scannedLine[MAX_FILENAME_SIZE];
-	while(!feof(file)) {
-		fgets(scannedLine, MAX_FILENAME_SIZE, file);
-		
-		for(int i = 0; i < MAX_FILENAME_SIZE; i++) {
-			if(scannedLine[i] == '\n') {
-				scannedLine[i] = '\0';
-				break;
-			}
-		}
-		
-		if(strcmp(scannedLine,filename) == 0) {
-			fclose(file);
-			return TRUE;
-		}
-	}
-	fclose(file);
-	return FALSE;
 }
 

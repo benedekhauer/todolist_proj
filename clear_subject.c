@@ -7,17 +7,18 @@
 #include <stdlib.h>
 
 
-int proc_clrs(char* username) {
+void proc_clrs(char* username) {
 
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> There is no subject to clear.\n");
-		return FALSE;
+		return;
 	}
 
 	if(allEmpty() == TRUE) {
 		printf("| Bot> All your subjects are already empty.\n");
-		return FALSE;
+		return;
 	}
     char unchanged[MAX_STR_SIZE];
     char subject[MAX_STR_SIZE];
@@ -38,27 +39,22 @@ int proc_clrs(char* username) {
 
 	if(strcmp(subject, ALL_CODE) == 0) {
 		clear_all();
-		return TRUE;
+		return;
 	}
 
-
-    if(strcmp(subject, EXIT_CODE) == 0) {
-        printf("| Bot> No changes. Aborted.\n");
-        return FALSE;
-    }
+	M_RET_IF_EXIT(subject);
 
 
     if(file_exists(unchanged) == TRUE) {
-        FILE* toClear = fopen(subject, "w");
+        M_RET_IF_TRUE(missing(unchanged));
+		FILE* toClear = fopen(subject, "w");
 		fprintf(toClear, "%s", EMPTY_STRING);
 		fclose(toClear);
 		printf("| Bot> Subject cleared successfully.\n");
-		return TRUE;
     }
     else {
         printf("| Bot> The subject you typed in does not exist.\n");
         printf("| Bot> Failed to clear.\n");
-        return FALSE;
     }
 
 }

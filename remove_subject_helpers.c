@@ -6,7 +6,8 @@
 
 void delete_file(char filename[]) {
 	remove(filename);
-	generate_all_files();
+	M_RET_IF_TRUE(missing(FILE_LIST));
+	M_RET_IF_TRUE(missing(filename));
 	FILE* all_files = fopen(FILE_LIST, "r");
 	FILE* swap = fopen(FILE_SWAP, "w");
 	char line[MAX_STR_SIZE];
@@ -28,10 +29,10 @@ void delete_file(char filename[]) {
 	fprintf(newSwap, "%s", EMPTY_STRING);
 	fclose(newSwap);
 	remove_from_gitignore(filename);
-	return;
 }
 
 void remove_from_gitignore(char filename[]) {
+	M_RET_IF_TRUE(missing(".gitignore"));
 	FILE* gitignore = fopen(".gitignore", "r");
     FILE* swap = fopen(FILE_SWAP, "w");
     char line[MAX_STR_SIZE];
@@ -50,6 +51,4 @@ void remove_from_gitignore(char filename[]) {
     remove(".gitignore");
     rename(FILE_SWAP, ".gitignore");
     remove(FILE_SWAP);
-	return;
-
 }

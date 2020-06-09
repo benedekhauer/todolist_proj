@@ -1,8 +1,25 @@
+#pragma once
+
 #include <stdio.h>
 #include "util.h"
 #include <string.h>
 #include <stdlib.h>
 #include "initialize.h"
+
+int missing(const char filename[]) {
+	FILE* file = fopen(filename, "r");
+	if(file == NULL) {
+		print_hrst_msg();
+		return TRUE;
+	}
+	fclose(file);
+	return FALSE;
+}
+
+void print_hrst_msg(void) {
+	printf("| Bot> Files missing. Run 'hrst' to reset everything.\n");
+}
+
 
 void print_line(void) {
     printf("|-------------------------------------------------------------------\n");
@@ -12,7 +29,7 @@ void generate_files(void) {
 }
 
 void print_subjects(void) {
-	generate_all_files();
+	M_RET_IF_TRUE(missing(FILE_LIST));	
 	FILE* file = fopen(FILE_LIST, "r");
 	char line[MAX_STR_SIZE];
 	print_line();
@@ -40,6 +57,7 @@ void print_subjects(void) {
 }
 
 int get_nb_todos(const char subject[]) {
+	M_RET_IF_TRUE(missing(subject));
 	if(isFileEmpty(subject)) {return 0;}
 	FILE* f_subj = fopen(subject, "r");
 	int lineCount = 0;
@@ -111,7 +129,7 @@ int confirm(const char username[]) {
 
 
 void print_nonempty_subjects(void) {
-	generate_all_files();
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	printf("|   ############## SUBJECTS ##############\n");
 	FILE* file = fopen(FILE_LIST, "r");
     char line[MAX_FILENAME_SIZE];
@@ -140,7 +158,7 @@ void print_nonempty_subjects(void) {
 }
 
 int allEmpty(void) {
-	generate_all_files();
+	if(missing(FILE_LIST) == TRUE){return TRUE;}
 	FILE* all_files = fopen(FILE_LIST, "r");
 	char line[MAX_FILENAME_SIZE];
 	while(!feof(all_files)) {
@@ -166,14 +184,15 @@ void correct(char filename[]) {
 }
 
 int file_exists(const char filename[]) {
-	generate_all_files();
-    FILE* all_files = fopen(FILE_LIST, "r");
+	if(missing(FILE_LIST) == TRUE) {return FALSE;}
+	FILE* all_files = fopen(FILE_LIST, "r");
     char line[MAX_STR_SIZE];
     while(!feof(all_files)) {
         fgets(line, MAX_STR_SIZE, all_files);
         correct(line);
         if(strcmp(line, filename) == 0) {
             fclose(all_files);
+			if(missing(filename) == TRUE){return TRUE;}
             return TRUE;
         }
     }
@@ -209,6 +228,7 @@ void print_subject_name(const char subject[], int withEndline) {
 
 int line_count(char file[]) {
 	char line[MAX_STR_SIZE];
+	M_RET_IF_TRUE(missing(file));
 	FILE* f_toCount = fopen(file, "r");
 	if(f_toCount == NULL) {
 		printf("Some files are missing.\n");

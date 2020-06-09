@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define SUCCESS 0
-#define FAILURE 1
+#define FAILURE -1
 #define FALSE 0
 #define TRUE 1
 #define ZERO 0
@@ -35,13 +35,20 @@
 #define M_FREE(ptr) {if((ptr)!=NULL){free(ptr);ptr=NULL;}}
 
 #define M_RET_IF_EXIT(str) {if((strcmp(str, EXIT_CODE)) == 0) {return;}}
-#define M_RET_IF_TRUE(val) {if(val == TRUE) {return;}}
-#define M_REF_IF_FALSE(val) {if(val == FALSE) {return;}}
+#define M_RET_IF_TRUE(val) {if((val) == TRUE) {return;}}
+
+#define M_RET_IF_FALSE(val) {if((val) == FALSE) {return;}}
+#define M_RET_FAIL_IF_NULL(val) {if((val) == NULL) {return FAILURE;}}
+
+
 #define M_RET_IF_NULL(p) {if((p) == NULL) {return;}}
 
 #define M_PRINT_HRST_RET(ptr) \
 	{if(ptr == NULL) {printf("Files missing. Run 'hrst' to reset everything.\n");return;}}
 
+int missing(const char[]);
+
+void print_hrst_msg(void);
 
 void generate_files(void);
 

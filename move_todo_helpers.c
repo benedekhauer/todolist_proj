@@ -13,7 +13,7 @@ void move_to_top(char subject[], char* username) {
 	char line[MAX_STR_SIZE];
 	int matched = 0;
 
-
+	M_RET_IF_TRUE(missing(FILE_LIST));
 	do {
 		printf("| %s> (%s to exit): ", username, EXIT_CODE);
         fgets(line, MAX_STR_SIZE, stdin);
@@ -42,6 +42,7 @@ void move_to_top(char subject[], char* username) {
 
 
 void execute(char subject[], int move_id) {
+	M_RET_IF_TRUE(missing(subject));
 	FILE* f_subj = fopen(subject, "r");
 	char text[MAX_STR_SIZE];
 	char topLine[MAX_STR_SIZE];	

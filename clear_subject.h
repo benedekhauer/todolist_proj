@@ -1,1 +1,1 @@
-int proc_clrs(char*);
+void proc_clrs(char*);

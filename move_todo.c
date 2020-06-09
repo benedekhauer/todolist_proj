@@ -5,7 +5,8 @@
 #include "move_todo_helpers.h"
 
 void proc_mvtp(char* username) {
-	
+
+	M_RET_IF_TRUE(missing(FILE_LIST));	
 	if(isFileEmpty(FILE_LIST) == TRUE) {
 		printf("| Bot> Your subjects list is empty.\n");
 		return;
@@ -25,7 +26,6 @@ void proc_mvtp(char* username) {
 	correct(subject);
 
 	if(strcmp(subject, EXIT_CODE) == 0) {
-		printf("| Bot> No changes.\n");
 		return;
 	}
 	
