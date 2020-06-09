@@ -15,8 +15,12 @@ int missing(const char filename[]) {
 }
 
 void print_hrst_msg(void) {
+	print_line();
 	printf("| Bot> ### Files missing. You probably deleted useful files.\n");
-	printf("| Bot> ### Delete all your files except the main file, and run it again for reset.\n");
+	printf("| Bot> ### The program might not work as expected.\n");
+	printf("| Bot> ### 1. Delete all your files except the main file.\n");
+	printf("| Bot> ### 2. Run ./%s again.\n", EXEC_FILE);
+	print_line();
 }
 
 
@@ -39,7 +43,7 @@ void print_subjects(void) {
 		correct(line);
 		FILE* fn = fopen(line, "r");
 		if(fn == NULL) {
-			printf("|   #             --- ERROR ---          #\n");
+			printf("|   #          --- ERROR ---             #\n");
 			printf("|   ######################################\n");
 			print_hrst_msg();
 			fclose(file);
