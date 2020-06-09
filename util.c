@@ -200,7 +200,9 @@ int file_exists(const char filename[]) {
 		correct(line);
         if(strcmp(line, filename) == 0) {
             fclose(all_files);
-			if(missing(filename) == TRUE){return TRUE;}
+			FILE* fn = fopen(filename, "r");
+			if(fn == NULL) {return TRUE;}
+			fclose(fn);
             return TRUE;
         }
     }
