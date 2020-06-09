@@ -15,7 +15,8 @@ int missing(const char filename[]) {
 }
 
 void print_hrst_msg(void) {
-	printf("| Bot> ### Files missing. Run 'hrst' to reset everything.\n");
+	printf("| Bot> ### Files missing. You probably deleted useful files.\n");
+	printf("| Bot> ### Delete all your files except the main file, and run it again for reset.\n");
 }
 
 

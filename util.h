@@ -44,7 +44,7 @@
 #define M_RET_IF_NULL(p) {if((p) == NULL) {return;}}
 
 #define M_PRINT_HRST_RET(ptr) \
-	{if(ptr == NULL) {printf("Files missing. Run 'hrst' to reset everything.\n");return;}}
+	{if(ptr == NULL) {print_hrst_msg();return;}}
 
 int missing(const char[]);
 
