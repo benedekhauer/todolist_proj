@@ -44,6 +44,9 @@ void add_todo(const char subject[], const char username[], int todoId) {
 
 
 int generate_id(void) {
+	FILE* all_files = fopen(FILE_LIST);
+	if(all_files == NULL) {generate_all_files();}
+	if(isFileEmpty(FILE_LIST) == TRUE) {return FIRST_ID;}
 	if(allEmpty()) {
 		return FIRST_ID;
 	}

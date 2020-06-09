@@ -17,6 +17,7 @@
 
 int main(void) {
 	int username_update = FALSE;
+	generate_username();
 	char* username = get_username();
 	command cmd = none;
 	print_line();
