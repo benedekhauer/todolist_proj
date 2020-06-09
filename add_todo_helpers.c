@@ -3,6 +3,7 @@
 #include "util.h"
 #include <string.h>
 #include "print_subject_helpers.h"
+#include "initialize.h"
 
 void add_todo(const char subject[], const char username[], int todoId) {
 	if(todoId > MAX_TODO_COUNT) {
@@ -44,7 +45,7 @@ void add_todo(const char subject[], const char username[], int todoId) {
 
 
 int generate_id(void) {
-	FILE* all_files = fopen(FILE_LIST);
+	FILE* all_files = fopen(FILE_LIST, "r");
 	if(all_files == NULL) {generate_all_files();}
 	if(isFileEmpty(FILE_LIST) == TRUE) {return FIRST_ID;}
 	if(allEmpty()) {
