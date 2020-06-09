@@ -37,13 +37,15 @@ void print_subjects(void) {
 		fgets(line, MAX_STR_SIZE, file);
 		if(feof(file)) {break;}
 		correct(line);
-		if(missing(line) == TRUE) {
+		FILE* fn = fopen(line, "r");
+		if(fn == NULL) {
 			printf("|   #             --- ERROR ---          #\n");
 			printf("|   ######################################\n");
 			print_hrst_msg();
 			fclose(file);
 			return;
 		}
+		fclose(fn);
 		int nbtodos = get_nb_todos(line);
 		int nb_digits = get_digits(nbtodos);
 		
