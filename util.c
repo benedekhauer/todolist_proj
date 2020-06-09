@@ -17,15 +17,18 @@ int missing(const char filename[]) {
 void print_hrst_msg(void) {
 	print_line();
 	printf("| Bot> ### Files missing. You probably deleted useful files.\n");
-	printf("| Bot> ### The program might not work as expected.\n");
-	printf("| Bot> ### 1. Delete all your files except the main file.\n");
-	printf("| Bot> ### 2. Run ./%s again.\n", EXEC_FILE);
+	printf("|      ### The program might not work as expected.\n");
+	printf("|      ### If you have no idea about the problem, a hard reset is needed.\n");
+	printf("|      ### Follow these instructions to prevent any further errors:\n");
+	printf("|      ### 1. Quit the program.\n");
+	printf("|      ### 2. Delete all your files except the main file.\n");
+	printf("|      ### 3. Run ./%s again.\n", EXEC_FILE);
 	print_line();
 }
 
 
 void print_line(void) {
-    printf("|-------------------------------------------------------------------\n");
+    printf("|-------------------------------------------------------------------------\n");
 }
 void generate_files(void) {
 	initialize_all();
