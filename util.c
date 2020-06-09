@@ -187,7 +187,8 @@ int file_exists(const char filename[]) {
     char line[MAX_STR_SIZE];
     while(!feof(all_files)) {
         fgets(line, MAX_STR_SIZE, all_files);
-        correct(line);
+        if(feof(all_files)) {break;}
+		correct(line);
         if(strcmp(line, filename) == 0) {
             fclose(all_files);
 			if(missing(filename) == TRUE){return TRUE;}
