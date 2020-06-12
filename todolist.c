@@ -112,6 +112,13 @@ int main(void) {
 	
 
 		do {
+			FILE* all = fopen(FILE_LIST, "r");
+            if(all == NULL) {
+                printf("| Bot> Error. Exiting.\n");
+                printf("|------------------------- END OF TODOLIST -------------------------\n");
+                return 0;
+            }
+			fclose(all);
             printf("| %s> (cmd): ", username);
             char s_command[MAX_STR_SIZE];
             char s_check[CMD_SIZE];
