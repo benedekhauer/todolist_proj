@@ -101,6 +101,14 @@ int main(void) {
 			M_FREE(username);
 			username = get_username();
 		}
+
+		FILE* all = fopen(FILE_LIST, "r");
+		if(all == NULL) {
+			printf("| Bot> Exiting.\n");
+			printf("|------------------------- END OF TODOLIST -------------------------\n");
+			return 0;
+		}
+		fclose(all);
 	
 
 		do {
