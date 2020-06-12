@@ -28,7 +28,8 @@ void proc_mvtp(char* username) {
 	if(strcmp(subject, EXIT_CODE) == 0) {
 		return;
 	}
-	
+	M_RET_IF_TRUE(missing(subject));
+		
 	if(file_exists(subject) == FALSE) {
 		printf("| Bot> This subject does not exist.\n");
 		return;

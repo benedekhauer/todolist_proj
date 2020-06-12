@@ -6,6 +6,7 @@
 #include "move_todo_helpers.h"
 
 void move_to_top(char subject[], char* username) {
+	M_RET_IF_TRUE(missing(subject));
 	print_full_subject(subject);
 	int move_id;
 	printf("| Bot> Enter the number of the todo you want to move to the top.\n");
@@ -13,11 +14,13 @@ void move_to_top(char subject[], char* username) {
 	char line[MAX_STR_SIZE];
 	int matched = 0;
 
+	M_RET_IF_TRUE(missing(subject));
 	M_RET_IF_TRUE(missing(FILE_LIST));
 	do {
 		printf("| %s> (%s to exit): ", username, EXIT_CODE);
         fgets(line, MAX_STR_SIZE, stdin);
         if(isNumber(line) == TRUE) {
+			M_RET_IF_TRUE(missing(subject));
             move_id = atoi(line);
             matched = 1;
         }
