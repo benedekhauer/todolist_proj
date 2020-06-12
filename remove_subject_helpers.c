@@ -7,7 +7,6 @@
 void delete_file(char filename[]) {
 	remove(filename);
 	M_RET_IF_TRUE(missing(FILE_LIST));
-	M_RET_IF_TRUE(missing(filename));
 	FILE* all_files = fopen(FILE_LIST, "r");
 	FILE* swap = fopen(FILE_SWAP, "w");
 	char line[MAX_STR_SIZE];

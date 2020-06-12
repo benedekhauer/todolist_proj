@@ -44,3 +44,6 @@ todolist.o: todolist.c command.h util.h add_subject.h remove_subject.h \
  random_todo.h display_subjects.h change_username.h information.h \
  move_todo.h initialize.h
 util.o: util.c util.h initialize.h
+
+clean:
+	rm *.o todolist

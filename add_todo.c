@@ -31,10 +31,10 @@ void proc_addt(char* username) {
 
 	correct(subject);
 	M_RET_IF_TRUE(missing(FILE_LIST));
-	M_RET_IF_TRUE(missing(subject));
 
 	M_RET_IF_TRUE(strcmp(subject, EXIT_CODE) == 0);
-	
+
+	M_RET_IF_TRUE(missing(subject));	
 	if(file_exists(subject) == TRUE) {
 		add_todo(subject, username, id);
 	}

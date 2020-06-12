@@ -28,7 +28,6 @@ int main(void) {
 	while(cmd == none) {
         printf("| %s> (cmd): ", username);
         char s_command[MAX_STR_SIZE];
-        char s_check[CMD_SIZE];
         fgets(s_command, MAX_STR_SIZE, stdin);
         cmd = parse_command(s_command);
     }
@@ -121,7 +120,6 @@ int main(void) {
 			fclose(all);
             printf("| %s> (cmd): ", username);
             char s_command[MAX_STR_SIZE];
-            char s_check[CMD_SIZE];
             fgets(s_command, MAX_STR_SIZE, stdin);
             cmd = parse_command(s_command);
         } while(cmd == none);

@@ -135,7 +135,6 @@ int confirm(const char username[]) {
     while(yn == 'X') {
         printf("| %s> (Y/N): ", username);
         char s_answer[MAX_STR_SIZE];
-        char s_check[1];
         fgets(s_answer, MAX_STR_SIZE, stdin);
         yn = parse_answer(s_answer);
     }
