@@ -27,6 +27,7 @@ void proc_prnt(char* username) {
 	M_RET_IF_EXIT(chosen_file);
 	print_line();
 	M_RET_IF_TRUE(missing(FILE_LIST));
+	M_RET_IF_TRUE(missing(chosen_file));
 	print_subject(chosen_file);
 
 }

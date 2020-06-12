@@ -66,11 +66,3 @@ void print_count_line(int nb_todos) {
 	printf(" #\n");
 
 }
-
-
-
-
-
-
-
-
