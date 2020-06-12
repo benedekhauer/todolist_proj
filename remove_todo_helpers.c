@@ -8,6 +8,7 @@
 
 void delete_todo(char subject[], char* username) {
 
+	M_RET_IF_TRUE(missing(subject));
 	print_full_subject(subject);
 	int del_id;
 	printf("| Bot> Enter the number of the todo you want to delete.\n");
