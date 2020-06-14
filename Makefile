@@ -2,8 +2,7 @@ todolist: todolist.o command.o add_subject.o add_subject_helpers.o remove_subjec
   remove_subject_helpers.o util.o add_todo_helpers.o add_todo.o clear_subject.o \
   clear_subject_helpers.o print_subject.o print_subject_helpers.o reset.o \
   remove_todo.o remove_todo_helpers.o random_todo.o initialize.o move_todo.o \
-  display_subjects.o change_username.o information.o move_todo_helpers.o
-
+  display_subjects.o change_username.o information.o move_todo_helpers.o show_todos.o
 
 add_subject.o: add_subject.c util.h add_subject.h add_subject_helpers.h \
  remove_subject_helpers.h initialize.h
@@ -39,11 +38,13 @@ remove_todo.o: remove_todo.c util.h remove_todo.h remove_todo_helpers.h
 remove_todo_helpers.o: remove_todo_helpers.c util.h remove_todo_helpers.h \
  print_subject_helpers.h
 reset.o: reset.c reset.h util.h remove_subject_helpers.h initialize.h
+show_todos.o: show_todos.c show_todos.h util.h print_subject_helpers.h
 todolist.o: todolist.c command.h util.h add_subject.h remove_subject.h \
  add_todo.h clear_subject.h print_subject.h reset.h remove_todo.h \
  random_todo.h display_subjects.h change_username.h information.h \
  move_todo.h initialize.h
 util.o: util.c util.h initialize.h
+
 
 clean:
 	rm *.o todolist

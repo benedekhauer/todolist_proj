@@ -12,6 +12,7 @@ typedef enum {
 	rndm,
 	clrs,
 	prnt,
+	show,
 	usrn,
 	info,
 	help,

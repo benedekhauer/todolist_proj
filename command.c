@@ -14,6 +14,7 @@
 #define NAME_RNDM "rndm"
 #define NAME_CLRS "clrs"
 #define NAME_PRNT "prnt"
+#define NAME_SHOW "show"
 #define NAME_USRN "usrn"
 #define NAME_INFO "info"
 #define NAME_HELP "help"
@@ -21,8 +22,8 @@
 
 int isValid(command c) {
 	if(c == init || c == disp || c == adds || c == addt || c == dels || c == delt || 
-	   c == mvtp || c == rndm || c == clrs || c == prnt || c == usrn || c == info ||
-	   c == help || c == quit) {
+	   c == mvtp || c == rndm || c == clrs || c == prnt || c == show || c == usrn || 
+	   c == info || c == help || c == quit) {
 		return TRUE;
 	}
 	return FALSE;
@@ -41,6 +42,7 @@ void print_commands(void) {
     printf("|   #  Random todo:      rndm #\n");
     printf("|   #  Clear subject:    clrs #\n");
     printf("|   #  Print subject:    prnt #\n");
+	printf("|   #  Show all todos:   show #\n");
     printf("|   #  Change username:  usrn #\n");
     printf("|   #  Useful info:      info #\n");
     printf("|   #  Show commands:    help #\n");
@@ -61,6 +63,7 @@ void print_command(command cmd) {
 		case rndm: printf("rndm\n");return;
 		case clrs: printf("clrs\n");return;
 		case prnt: printf("prnt\n");return;
+		case show: printf("show\n");return;
 		case usrn: printf("usrn\n");return;
 		case info: printf("info\n");return;
 		case help: printf("help\n");return;
@@ -85,6 +88,7 @@ command parse_command(char read[]) {
 	else if(strcmp(str, NAME_RNDM) == 0) {return rndm;}
 	else if(strcmp(str, NAME_CLRS) == 0) {return clrs;}
 	else if(strcmp(str, NAME_PRNT) == 0) {return prnt;}
+	else if(strcmp(str, NAME_SHOW) == 0) {return show;}
 	else if(strcmp(str, NAME_USRN) == 0) {return usrn;}
 	else if(strcmp(str, NAME_INFO) == 0) {return info;}
 	else if(strcmp(str, NAME_HELP) == 0) {return help;}

@@ -15,6 +15,7 @@
 #include "information.h"
 #include "move_todo.h"
 #include "initialize.h"
+#include "show_todos.h"
 
 int main(void) {
 	int username_update = FALSE;
@@ -75,6 +76,10 @@ int main(void) {
 				break;
 			case prnt:
 				proc_prnt(username);
+				print_line();
+				break;
+			case show:
+				proc_show();
 				print_line();
 				break;
 			case usrn:
