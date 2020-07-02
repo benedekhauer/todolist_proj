@@ -29,12 +29,14 @@ void proc_delt(char* username) {
 
 
 	M_RET_IF_EXIT(subject);
-	M_RET_IF_TRUE(missing(subject));
 
 	if(file_exists(subject) == FALSE) {
 		printf("| Bot> The subject you want to delete from does not exist.\n");
 		return;
 	}
+
+	M_RET_IF_TRUE(missing(subject));
+
 	if(isFileEmpty(subject) ==  TRUE) {
 		printf("| Bot> The file you want to delete from is empty.\n");
 		return;
