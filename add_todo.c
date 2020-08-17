@@ -34,8 +34,8 @@ void proc_addt(char* username) {
 
 	M_RET_IF_TRUE(strcmp(subject, EXIT_CODE) == 0);
 
-	M_RET_IF_TRUE(missing(subject));	
 	if(file_exists(subject) == TRUE) {
+		M_RET_IF_TRUE(missing(subject));
 		add_todo(subject, username, id);
 	}
 
