@@ -46,7 +46,7 @@ void print_commands(void) {
     printf("|   #  Change username:  usrn #\n");
     printf("|   #  Useful info:      info #\n");
     printf("|   #  Show commands:    help #\n");
-    printf("|   #  Exit:             exit #\n");
+    printf("|   #  Exit:             quit #\n");
     printf("|   ###########################\n");
     printf("|\n");
 }
